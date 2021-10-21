@@ -31,7 +31,8 @@ CREATE TABLE accounts (
   website_name VARCHAR(255) NOT NULL,
   website_url VARCHAR(255) NOT NULL,
   login VARCHAR(255) NOT NULL,
-  password VARCHAR(255) NOT NULL
+  password VARCHAR(255) NOT NULL,
+  is_active BOOLEAN NOT NULL DEFAULT TRUE
 );
 
 

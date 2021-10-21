@@ -1,7 +1,7 @@
 {
-  "name": "node-skeleton",
+  "name": "password-keepr",
   "version": "1.0.0",
-  "description": "",
+  "description": "Password Manager app for LHL Midterms Oct 2021",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -9,7 +9,7 @@
     "local": "./node_modules/.bin/nodemon -L --ignore public/",
     "db:reset": "node bin/resetdb.js"
   },
-  "author": "Lighthouse Labs",
+  "contributors": ["Arushi Katyal", "Olivia Wong", "Esra Saatci"],
   "license": "ISC",
   "dependencies": {
     "chalk": "^2.4.2",

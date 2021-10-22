@@ -2,16 +2,17 @@
 <html lang="en">
 
 <head>
-  <title>Home Page</title>
+  <title>passwordb - home</title>
   <%- include('partials/_head') %>
-
 </head>
 
-<body>
-  <div class="bg-image" style="background-image: url('/images/logo.png'); height: 100vh">
-    <a href="/login"><button type="button" class="btn bg-white">Log In</button></a>
+<body class="background">
+  <div class="container">
+    <h1 class="logo">passwordb</h1>
+    <p class="tagline">Join passwordb, the easiest way to store secure and strong passwords. Never forget your password again!</p>
+    <a href="/login"><button type="button" class="btn btn-outline-primary">Log in</button></a>
     <a href="/register"><button type="button" class="btn bg-white" href="/register">Register</button></a>
-
+  </div>
 
   <!-- Bootstrap JS -->
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -22,7 +23,3 @@
 </body>
 
 </html>
-
-
-
-

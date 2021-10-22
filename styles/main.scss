@@ -1,9 +1,32 @@
-button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.registration-form {
+  width: 60vh;
+  border: grey solid 0.5px;
+  padding: 3em;
 }
 
+.registration-container {
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+  justify-content: center
+}
+
+p {
+  width: 60vh
+}
+
+.row g-3 {
+  padding: 1em;
+}
+
+
+.col-md-6 {
+  margin-bottom: 1.5em
+}
+
+.col-12 {
+  margin-bottom: 1.5em
+}
 
 // from node_skeleton
 // body {

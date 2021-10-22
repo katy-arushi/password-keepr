@@ -49,11 +49,26 @@ app.use("/api/widgets", widgetsRoutes(db));
 // Separate them into separate routes files (see above).
 
 app.get("/", (req, res) => {
+  res.render("homepage");
+});
+
+app.get("/api/users", (req, res) => {
+  db.query(`SELECT * FROM users;`)
+    .then((data) => {
+      const users = data.rows;
+      res.json({ users });
+    })
+    .catch((err) => {
+      res.status(500).json({ error: err.message });
+    });
+});
+
+app.get("/login", (req, res) => {
   res.render("login");
 });
 
-app.get("/index", (req, res) => {
-  res.render("index");
+app.get("/register", (req, res) => {
+  res.render("register");
 });
 
 app.listen(PORT, () => {

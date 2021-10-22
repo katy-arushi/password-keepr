@@ -9,7 +9,11 @@ $text-color: #393E41;
 }
 
 .container {
-  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 90vh;
   width: 100%;
 }
 
@@ -17,17 +21,24 @@ $text-color: #393E41;
   font-family: 'ABeeZee', sans-serif;
   font-size: 175px;
   color: white;
+  margin: 50px 0;
 }
 
 .tagline {
   font-family: 'Hind Guntur', sans-serif;
   font-size: 24px;
+  text-align: center;
+  margin-bottom: 50px;
 }
 
 // button stylings
 
 .btn {
   color: $secondary-color;
+  &:hover {
+    background-color: $text-color;
+    border-color: $secondary-color;
+  }
 }
 
 .btn-primary {
@@ -35,15 +46,23 @@ $text-color: #393E41;
   border-color: $secondary-color;
   color: $primary-color;
   font-weight: bold;
+  padding-right: 40px;
+  padding-left: 40px;
 }
 
 .btn-outline-primary {
   background-color: $primary-color;
   border-color: $secondary-color;
   font-weight: bold;
+  padding-right: 40px;
+  padding-left: 40px;
+
 }
 
 .buttons {
+  display: flex;
   padding: 10px;
   flex-direction: row;
+  justify-content: space-between;
+  width: 50%;
 }

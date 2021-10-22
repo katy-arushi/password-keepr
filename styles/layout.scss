@@ -1,4 +1,12 @@
+$primary-color: #5798B2;
+$secondary-color: #E1B851;
+$text-color: #393E41;
+
 body,
 html {
   margin: 0;
+}
+
+.navbar {
+  background-color: $primary-color!important;
 }

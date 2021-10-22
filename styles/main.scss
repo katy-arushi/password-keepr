@@ -4,6 +4,17 @@
   padding: 3em;
 }
 
+.registration-container {
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+  justify-content: center
+}
+
+p {
+  width: 60vh
+}
+
 .row g-3 {
   padding: 1em;
 }

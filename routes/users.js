@@ -46,18 +46,16 @@ module.exports = (db) => {
   router.post("/login", (req, res) => {
     const password = req.body.password;
     const email = req.body.email;
-    db.query(`SELECT * FROM users WHERE email=$1`, [email]).then((data) => {
-      user = data.rows[0];
-      req.session.userID = user.id;
-      console.log(user, req.session.userID);
-      res.redirect("/accounts");
-    });
+    db.query(`SELECT * FROM users WHERE email=$1`, [email])
+      .then((data) => {
+        user = data.rows[0];
+        req.session.userID = user.id;
+        res.redirect("/api/accounts");
+      })
+      .catch((err) => {
+        res.status(500).jason({ error: err.message });
+      });
   });
-
-  // if (!email || !password) {
-  //   return res.status(403).send("Email or password cannot be empty!");
-  // }
-  // req.session.user_id =
 
   return router;
 };

@@ -9,6 +9,10 @@ const express = require("express");
 const router = express.Router();
 
 module.exports = (db) => {
+  router.get("/organizations", (req, res) => {
+    res.render("organizations");
+  });
+
   router.get("/register", (req, res) => {
     res.render("register");
   });
@@ -34,6 +38,26 @@ module.exports = (db) => {
         res.status(500).json({ error: err.message });
       });
   });
+
+  router.get("/login", (req, res) => {
+    res.render("login");
+  });
+
+  router.post("/login", (req, res) => {
+    const password = req.body.password;
+    const email = req.body.email;
+    db.query(`SELECT * FROM users WHERE email=$1`, [email]).then((data) => {
+      user = data.rows[0];
+      req.session.userID = user.id;
+      console.log(user, req.session.userID);
+      res.redirect("/accounts");
+    });
+  });
+
+  // if (!email || !password) {
+  //   return res.status(403).send("Email or password cannot be empty!");
+  // }
+  // req.session.user_id =
 
   return router;
 };

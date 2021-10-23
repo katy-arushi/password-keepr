@@ -5,15 +5,16 @@ $text-color: #393E41;
 $text2-color: #1C1F21; // better for contrast and accessibility
 
 .background {
-  background-color: $primary-color-light;
+  background-color: $primary-color;
+  background-image: url(http://www.transparenttextures.com/patterns/gplay.png);
 }
 
 .registration-form {
   width: 60vh;
   border: $secondary-color solid 7px;
-  border-radius: 25px;
+  border-radius: 25px; // make rounded border
   padding: 3em;
-  background-color: whitesmoke;
+  background-color: whitesmoke; // off white form background
 }
 
 .registration-container {
@@ -29,6 +30,8 @@ $text2-color: #1C1F21; // better for contrast and accessibility
   font-size: 60px;
   text-align: center;
   margin-bottom: 35px;
+  color: white;
+  text-shadow: 2px 2px 4px #000000;
 }
 
 .register-tagline { // "free open source" etc
@@ -37,6 +40,7 @@ $text2-color: #1C1F21; // better for contrast and accessibility
   width: 60vh;
   text-align: center;
   margin-bottom: 50px;
+  font-weight: bold;
 }
 
 .signup-tagline {
@@ -45,6 +49,7 @@ $text2-color: #1C1F21; // better for contrast and accessibility
   font-size: 24px;
   padding-bottom: 15px;
   padding-left: 2px;
+  color: black;
 }
 
 .row g-3 {

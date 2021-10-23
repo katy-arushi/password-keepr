@@ -56,6 +56,8 @@ app.use("/api/widgets", widgetsRoutes(db));
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 
+// -------------------------------------- GET ROUTE HANDLERS -------------------------------------- //
+
 app.get("/", (req, res) => {
   res.render("homepage");
 });
@@ -78,6 +80,17 @@ app.get("/login", (req, res) => {
 app.get("/organizations", (req, res) => {
   res.render("organizations");
 });
+
+app.get("/accounts", (req, res) => {
+  res.render("accounts");
+});
+
+// ------------------------------------ POST ROUTE HANDLERS --------------------------------------- //
+
+app.post("/register", (req, res) => {
+  res.redirect('/accounts');
+});
+
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);

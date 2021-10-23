@@ -5,21 +5,35 @@
  * See: https://expressjs.com/en/guide/using-middleware.html#middleware.router
  */
 
-const express = require('express');
-const router  = express.Router();
+const express = require("express");
+const router = express.Router();
 
 module.exports = (db) => {
-  router.get("/", (req, res) => {
-    db.query(`SELECT * FROM users;`)
-      .then(data => {
-        const users = data.rows;
-        res.json({ users });
+  router.get("/register", (req, res) => {
+    res.render("register");
+  });
+
+  router.post("/register", (req, res) => {
+    db.query(
+      `INSERT INTO users (org_id, first_name, last_name, password, email)
+    VALUES ($1, $2, $3, $4, $5) returning *`,
+      [
+        "1",
+        req.body.first_name,
+        req.body.last_name,
+        req.body.password,
+        req.body.email,
+      ]
+    )
+      .then((data) => {
+        const user = data.rows[0];
+        req.session.userId = user.id;
+        res.redirect("/organizations");
       })
-      .catch(err => {
-        res
-          .status(500)
-          .json({ error: err.message });
+      .catch((err) => {
+        res.status(500).json({ error: err.message });
       });
   });
+
   return router;
 };

@@ -7,6 +7,7 @@ const sassMiddleware = require("./lib/sass-middleware");
 const express = require("express");
 const app = express();
 const morgan = require("morgan");
+const cookieSession = require("cookie-session");
 
 // PG database client/connection setup
 const { Pool } = require("pg");
@@ -33,6 +34,13 @@ app.use(
 
 app.use(express.static("public"));
 
+app.use(
+  cookieSession({
+    name: "session",
+    keys: ["key1"],
+  })
+);
+
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
 const usersRoutes = require("./routes/users");
@@ -40,7 +48,7 @@ const widgetsRoutes = require("./routes/widgets");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
-app.use("/api/users", usersRoutes(db));
+app.use("/", usersRoutes(db));
 app.use("/api/widgets", widgetsRoutes(db));
 // Note: mount other resources here, using the same pattern above
 
@@ -52,23 +60,23 @@ app.get("/", (req, res) => {
   res.render("homepage");
 });
 
-app.get("/api/users", (req, res) => {
-  db.query(`SELECT * FROM users;`)
-    .then((data) => {
-      const users = data.rows;
-      res.json({ users });
-    })
-    .catch((err) => {
-      res.status(500).json({ error: err.message });
-    });
-});
-
 app.get("/login", (req, res) => {
   res.render("login");
 });
 
-app.get("/register", (req, res) => {
-  res.render("register");
+// app.post("/register", (req, res) => {
+//   const user = {
+//     id: "to implement passwordGenerator",
+//     first_name: req.body.first_name,
+//     last_name: req.body.last_name,
+//     email: req.body.email,
+//     password: req.body.email,
+//   };
+//   console.log(user);
+// });
+
+app.get("/organizations", (req, res) => {
+  res.render("organizations");
 });
 
 app.listen(PORT, () => {

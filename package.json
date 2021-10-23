@@ -9,10 +9,15 @@
     "local": "./node_modules/.bin/nodemon -L --ignore public/",
     "db:reset": "node bin/resetdb.js"
   },
-  "contributors": ["Arushi Katyal", "Olivia Wong", "Esra Saatci"],
+  "contributors": [
+    "Arushi Katyal",
+    "Olivia Wong",
+    "Esra Saatci"
+  ],
   "license": "ISC",
   "dependencies": {
     "chalk": "^2.4.2",
+    "cookie-session": "^1.4.0",
     "dotenv": "^2.0.0",
     "ejs": "^2.6.2",
     "express": "^4.17.1",

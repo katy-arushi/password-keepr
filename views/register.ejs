@@ -4,7 +4,7 @@
 <head>
   <title>passwordb - register</title>
   <%- include('partials/_head') %>
-  <link rel="stylesheet" href="/styles/register.css" type="text/css"/>
+
 </head>
 
 <body class="background">
@@ -16,21 +16,21 @@
     <div class="registration-form">
       <p class="signup-tagline"> Sign up for a free account</p>
 
-      <form class="row g-3">
+      <form class="row g-3" action="/register" method="POST">
         <div class="col-md-6">
-          <input type="text" class="form-control" placeholder="First name" aria-label="First name">
+          <input type="text" name="first_name" class="form-control" placeholder="First name" aria-label="First name">
         </div>
         <div class="col-md-6">
-          <input type="text" class="form-control" placeholder="Last name" aria-label="Last name">
+          <input type="text" name="last_name" class="form-control" placeholder="Last name" aria-label="Last name">
         </div>
         <div class="col-12">
-          <input type="email" class="form-control" placeholder="Email address" arial-labe="Email">
+          <input type="email" name="email" class="form-control" placeholder="Email address" arial-labe="Email">
         </div>
         <div class="col-12">
           <input type="password" class="form-control" placeholder="Password" arial-labe="Create password">
         </div>
         <div class="col-12">
-          <input type="password" class="form-control" placeholder="Confirm password" arial-labe="Create password">
+          <input type="password" name="password" class="form-control" placeholder="Confirm password" arial-labe="Create password">
         </div>
           <button type="submit" class="btn btn-primary">Register</button>
         </div>

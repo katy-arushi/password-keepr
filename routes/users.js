@@ -9,6 +9,10 @@ const express = require("express");
 const router = express.Router();
 
 module.exports = (db) => {
+  router.get("/organizations", (req, res) => {
+    res.render("organizations");
+  });
+
   router.get("/register", (req, res) => {
     res.render("register");
   });
@@ -32,6 +36,24 @@ module.exports = (db) => {
       })
       .catch((err) => {
         res.status(500).json({ error: err.message }); // Add comment
+      });
+  });
+
+  router.get("/login", (req, res) => {
+    res.render("login");
+  });
+
+  router.post("/login", (req, res) => {
+    const password = req.body.password;
+    const email = req.body.email;
+    db.query(`SELECT * FROM users WHERE email=$1`, [email])
+      .then((data) => {
+        user = data.rows[0];
+        req.session.userID = user.id;
+        res.redirect("/api/accounts");
+      })
+      .catch((err) => {
+        res.status(500).jason({ error: err.message });
       });
   });
 

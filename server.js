@@ -44,55 +44,20 @@ app.use(
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
 const usersRoutes = require("./routes/users");
-const widgetsRoutes = require("./routes/widgets");
+const accountsRoutes = require("./routes/accounts");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 app.use("/", usersRoutes(db));
-app.use("/api/widgets", widgetsRoutes(db));
+app.use("/api", accountsRoutes(db));
 // Note: mount other resources here, using the same pattern above
 
 // Home page
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 
-// -------------------------------------- GET ROUTE HANDLERS -------------------------------------- //
-
 app.get("/", (req, res) => {
   res.render("homepage");
-});
-
-app.get("/login", (req, res) => {
-  res.render("login");
-});
-
-// app.post("/register", (req, res) => {
-//   const user = {
-//     id: "to implement passwordGenerator",
-//     first_name: req.body.first_name,
-//     last_name: req.body.last_name,
-//     email: req.body.email,
-//     password: req.body.email,
-//   };
-//   console.log(user);
-// });
-
-app.get("/organizations", (req, res) => {
-  res.render("organizations");
-});
-
-app.get("/accounts", (req, res) => {
-  res.render("accounts");
-});
-
-// ------------------------------------ POST ROUTE HANDLERS --------------------------------------- //
-
-app.post("/register", (req, res) => {
-  res.redirect('/organizations');
-});
-
-app.post("/login", (req, res) => {
-  res.redirect('/accounts');
 });
 
 app.listen(PORT, () => {

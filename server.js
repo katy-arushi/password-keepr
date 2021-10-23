@@ -88,9 +88,12 @@ app.get("/accounts", (req, res) => {
 // ------------------------------------ POST ROUTE HANDLERS --------------------------------------- //
 
 app.post("/register", (req, res) => {
-  res.redirect('/accounts');
+  res.redirect('/organizations');
 });
 
+app.post("/login", (req, res) => {
+  res.redirect('/accounts');
+});
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);

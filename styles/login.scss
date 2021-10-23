@@ -1,0 +1,85 @@
+$primary-color: #5798B2;
+$secondary-color: #E1B851;
+$primary-color-light: #8FBACC;
+$text-color: #393E41;
+$text2-color: #1C1F21; // better for contrast and accessibility
+
+.background {
+  background-color: $primary-color;
+  background-image: url(http://www.transparenttextures.com/patterns/gplay.png);
+}
+
+.login-form {
+  width: 60vh;
+  border: $secondary-color solid 7px;
+  border-radius: 25px; // make rounded border
+  padding: 3em;
+  background-color: whitesmoke; // off white form background
+}
+
+.login-container {
+  display: flex;
+  height: 85vh; // slightly less than 100 so it looks horizontally centered on the page
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-tagline-main { // ready to register
+  font-family: 'ABeeZee', sans-serif;
+  font-size: 60px;
+  text-align: center;
+  margin-bottom: 35px;
+  color: white;
+  text-shadow: 2px 2px 4px #000000;
+}
+
+.login-tagline { // "free open source" etc
+  font-family: 'Signika Negative', sans-serif;
+  font-size: 26px;
+  width: 60vh;
+  text-align: center;
+  margin-bottom: 50px;
+  font-weight: bold;
+}
+
+.signup-tagline {
+  font-family: 'Hind Guntur', sans-serif;
+  font-weight: bold;
+  font-size: 24px;
+  padding-bottom: 15px;
+  padding-left: 2px;
+  color: black;
+}
+
+.row g-3 {
+  padding: 1em;
+}
+
+.col-md-6 {
+  margin-bottom: 1.5em
+}
+
+.col-12 {
+  margin-bottom: 1.5em
+}
+
+// button stylings
+
+.btn {
+  &:hover {
+    background-color: $text-color;
+    border-color: $text-color;
+  }
+}
+
+.btn-primary { // register button
+  color: $text2-color;
+  background-color: $primary-color;
+  border-color: $primary-color;
+  color: white;
+  border-width: 3px;
+  font-weight: bold;
+  margin-top: 13px;
+  margin-left: 14px;
+}

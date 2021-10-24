@@ -19,7 +19,7 @@ html {
   background-color: $primary-color!important; // had to use important to override bootstrap default stylings
 }
 
-.logo-header {
+.logo-header { // logo in navbar
   font-size: 38px;
-  font-family: 'ABeeZee', sans-serif;
+  font-family: $logo-font;
 }

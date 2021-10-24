@@ -9,18 +9,22 @@ const express = require("express");
 const router = express.Router();
 
 module.exports = (db) => {
+
+  // GET organizations
   router.get("/organizations", (req, res) => {
     res.render("organizations");
   });
 
+  // GET register
   router.get("/register", (req, res) => {
     res.render("register");
   });
 
+  // POST register
   router.post("/register", (req, res) => {
     db.query(
       `INSERT INTO users (org_id, first_name, last_name, password, email)
-    VALUES ($1, $2, $3, $4, $5) returning *`,
+      VALUES ($1, $2, $3, $4, $5) returning *`,
       [
         "1",
         req.body.first_name,
@@ -39,10 +43,12 @@ module.exports = (db) => {
       });
   });
 
+  // GET login
   router.get("/login", (req, res) => {
     res.render("login");
   });
 
+  // POST login
   router.post("/login", (req, res) => {
     const password = req.body.password;
     const email = req.body.email;

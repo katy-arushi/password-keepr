@@ -9,9 +9,8 @@ const express = require("express");
 const router = express.Router();
 
 module.exports = (db) => {
-  // router.get("/accounts", (req, res) => {
-  //   res.render("accounts");
-  // });
+
+  // GET accounts
 
   router.get("/accounts", (req, res) => {
     userId = req.session.userID;

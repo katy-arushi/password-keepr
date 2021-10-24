@@ -9,7 +9,6 @@ const express = require("express");
 const router = express.Router();
 
 module.exports = (db) => {
-
   // GET accounts
 
   router.get("/accounts", (req, res) => {
@@ -32,6 +31,10 @@ module.exports = (db) => {
       .catch((err) => {
         res.status(500).json({ error: err.message });
       });
+  });
+
+  router.get("/accounts/new_account", (req, res) => {
+    res.render("new_account");
   });
 
   return router;

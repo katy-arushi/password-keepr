@@ -24,3 +24,14 @@ html {
   font-family: $logo-font;
   margin: 0;
 }
+
+#search-btn { // search button in header
+  background-color: $secondary-color!important; // had to use important to override bootstrap default stylings
+  border-color: $secondary-color;
+  color: white;
+  font-weight: bold;
+  &:hover {
+    background-color: $text-color!important;
+    border-width: 3px;
+  }
+}

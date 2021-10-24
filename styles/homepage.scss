@@ -1,8 +1,14 @@
+// COLOR VARIABLES
 $primary-color: #5798B2;
-$secondary-color: #E1B851;
 $primary-color-light: #8FBACC;
-$text-color: #393E41; // color
-$text2-color: #1C1F21; // better for contrast and accessibility
+$secondary-color: #E1B851;
+$text-color: #393E41;
+$text2-color: #1C1F21; // darker for contrast and accessibility
+
+// FONT VARIABLES
+$logo-font: 'ABeeZee', sans-serif;
+$header-font: 'Signika Negative', sans-serif;
+$text-font: 'Hind Guntur', sans-serif;
 
 .background {
   background-color: $primary-color;
@@ -21,14 +27,14 @@ $text2-color: #1C1F21; // better for contrast and accessibility
 }
 
 .logo {
-  font-family: 'ABeeZee', sans-serif;
+  font-family: $logo-font;
   font-size: 175px;
   color: white;
   margin: 50px 0;
 }
 
-.tagline {
-  font-family: 'Hind Guntur', sans-serif;
+.tagline { // join passwordb, the easiest way...
+  font-family: $header-font;
   font-size: 24px;
   text-align: center;
   margin-bottom: 50px;
@@ -36,7 +42,6 @@ $text2-color: #1C1F21; // better for contrast and accessibility
 }
 
 // button stylings
-
 .btn {
   color: $secondary-color;
   &:hover {
@@ -53,8 +58,6 @@ $text2-color: #1C1F21; // better for contrast and accessibility
   font-weight: bold;
   padding-right: 40px;
   padding-left: 40px;
-  //text-shadow: 2px 2px 4px #000000;
-
 }
 
 .btn-outline-primary { // login button

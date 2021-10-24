@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>passwordb - New Account</title>
+  <%- include('partials/_head') %>
+  <link rel="stylesheet" href="/styles/register.css" type="text/css"/>
+
+</head>
+
+<body class="background">
+
+  <div class="registration-container">
+
+    <div class="registration-form">
+      <p class="signup-tagline"> Add a new account</p>
+      <form class="row g-3" action="/api/accounts/edit" method="POST">
+
+      <div class="col-12">
+        <input type="text" name="category" class="form-control" placeholder="Category" arial-labe="category">
+      </div>
+      <div class="col-12">
+        <input type="url" name="website_url" class="form-control" placeholder="URL" arial-labe="Website URL">
+      </div>
+        <div class="col-md-6">
+          <input type="text" name="website_name" class="form-control" placeholder="Web name" aria-label="Website Name">
+        </div>
+        <div class="col-md-6">
+          <input type="email" name="email" class="form-control" placeholder="Email" aria-label="email">
+        </div>
+        <div class="col-md-6">
+          <input type="password" name="manual_password" class="form-control" placeholder="Enter Password" aria-label="Enter Password">
+        </div>
+        <div class="col-md-6">
+          <button type="button" class="btn btn-outline-secondary">Generate Password</button>
+        </div>
+        <div class="col-12">
+          <input type="password" name="generated_password" class="form-control" placeholder="Your new password is:" arial-labe="generated password">
+        </div>
+          <button type="submit" class="btn btn-primary">Add Account</button>
+        </div>
+      </form>
+
+    </div>
+
+  </div>
+
+
+  <!-- Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+
+</body>
+
+</html>

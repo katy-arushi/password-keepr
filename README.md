@@ -2,6 +2,11 @@
 
 **passwordb** is a password generator and manager that creates and stores passwords for individuals and groups.
 
+---
+A [Lighthouse Labs](https://www.lighthouselabs.ca/) project by [Arushi Katyal](https://github.com/katy-arushi), [Olivia Wong](https://github.com/OliviaWong-dev), and [Esra Saatci](https://github.com/esra-saatci).
+
+---
+
 ## Features
 - Generates passwords based on user's specifications
 - Allows users to join organizations to see all an organization's passwords.

@@ -15,7 +15,6 @@ module.exports = (db) => {
 
   router.get("/accounts", (req, res) => {
     userId = req.session.userID;
-    console.log(userId);
     db.query(
       `SELECT accounts.* FROM accounts
     JOIN organizations ON organizations.id = org_id
@@ -24,10 +23,12 @@ module.exports = (db) => {
       [userId]
     )
       .then((data) => {
+        const accounts = data.rows;
+        console.log("accounts", accounts);
         const templateVars = {
-          accounts: data.rows,
+          accounts: accounts,
         };
-        console.log(data.rows);
+        console.log("templateVars", templateVars.accounts);
         res.render("accounts", templateVars);
       })
       .catch((err) => {

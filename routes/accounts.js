@@ -12,7 +12,7 @@ module.exports = (db) => {
   // GET accounts
 
   router.get("/accounts", (req, res) => {
-    userId = req.session.userID;
+    userId = req.session.userId;
     db.query(
       `SELECT accounts.* FROM accounts
     JOIN organizations ON organizations.id = org_id
@@ -50,17 +50,6 @@ module.exports = (db) => {
         req.body.manual_password,
         req.body.category,
       ]
-
-      //   `INSERT INTO accounts (org_id, category_id, website_name, website_url, login, password)
-      // VALUES($1, $2, $3, $4, $5, $6) returning *`,
-      //   [
-      //     userOrg,
-      //     category(),
-      //     req.body.website_name,
-      //     req.body.website_url,
-      //     req.body.email,
-      //     req.body.manual_password,
-      //   ]
     )
       .then((data) => {
         console.log(data.rows);

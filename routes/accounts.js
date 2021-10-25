@@ -60,5 +60,31 @@ module.exports = (db) => {
       });
   });
 
+ // GET edit_password
+ router.get("/accounts/edit_password", (req, res) => {
+  res.render("edit_password");
+});
+
+router.post("/accounts/edit_password", (req, res) => {
+  const userOrg = req.session.userOrg;
+
+const newPassword = req.body.manual_password;
+
+  db.query(
+    `UPDATE accounts SET password = $1 WHERE id = $2`,
+    [
+      newPassword,
+      '2',
+    ]
+  )
+    .then((data) => {
+      console.log(data.rows);
+      res.redirect("/api/accounts");
+    })
+    .catch((err) => {
+      res.status(505).json({ error: err.message });
+    });
+});
   return router;
 };
+

@@ -20,10 +20,10 @@
       <div class="col-12">
         <!-- <input type="text" name="category" class="form-control" placeholder="Category" arial-labe="category"> -->
         <label for="category">Select a category:</label>
-        <select name="category_id" class="form-control" id="category">
-          <% for (let category of categories) {%>
-            <option value=<%= category.id %>><%= category.website_category %></option>
-            <%}%>
+        <select class="form-control" id="category">
+          <option>Social</option>
+          <option>Work</option>
+          <option>Health and Fitness</option>
         </select>
       </div>
 

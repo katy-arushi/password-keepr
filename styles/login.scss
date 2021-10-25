@@ -32,7 +32,7 @@ $text-font: 'Hind Guntur', sans-serif;
 }
 
 .login-tagline-main { // ready to register
-  font-family: 'ABeeZee', sans-serif;
+  font-family: $logo-font;
   font-size: 60px;
   text-align: center;
   margin-bottom: 35px;
@@ -41,7 +41,7 @@ $text-font: 'Hind Guntur', sans-serif;
 }
 
 .login-tagline { // "free open source" etc
-  font-family: 'Signika Negative', sans-serif;
+  font-family: $header-font;
   font-size: 26px;
   width: 60vh;
   text-align: center;
@@ -50,7 +50,7 @@ $text-font: 'Hind Guntur', sans-serif;
 }
 
 .signup-tagline {
-  font-family: 'Hind Guntur', sans-serif;
+  font-family: $text-font;
   font-weight: bold;
   font-size: 24px;
   padding-bottom: 15px;

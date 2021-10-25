@@ -37,5 +37,39 @@ module.exports = (db) => {
     res.render("new_account");
   });
 
+  router.post("/accounts/new_account", (req, res) => {
+    const userOrg = req.session.userOrg;
+    db.query(
+      `INSERT INTO accounts (org_id, category_id, website_name, website_url, login, password)
+    SELECT $1, id, $2, $3, $4, $5 FROM categories WHERE website_category=$6`,
+      [
+        userOrg,
+        req.body.website_name,
+        req.body.website_url,
+        req.body.email,
+        req.body.manual_password,
+        req.body.category,
+      ]
+
+      //   `INSERT INTO accounts (org_id, category_id, website_name, website_url, login, password)
+      // VALUES($1, $2, $3, $4, $5, $6) returning *`,
+      //   [
+      //     userOrg,
+      //     category(),
+      //     req.body.website_name,
+      //     req.body.website_url,
+      //     req.body.email,
+      //     req.body.manual_password,
+      //   ]
+    )
+      .then((data) => {
+        console.log(data.rows);
+        res.redirect("/api/accounts");
+      })
+      .catch((err) => {
+        res.status(505).json({ error: err.message });
+      });
+  });
+
   return router;
 };

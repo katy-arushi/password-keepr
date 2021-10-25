@@ -9,7 +9,6 @@ const express = require("express");
 const router = express.Router();
 
 module.exports = (db) => {
-
   // GET organizations
   router.get("/organizations", (req, res) => {
     res.render("organizations");
@@ -23,10 +22,9 @@ module.exports = (db) => {
   // POST register
   router.post("/register", (req, res) => {
     db.query(
-      `INSERT INTO users (org_id, first_name, last_name, password, email)
-      VALUES ($1, $2, $3, $4, $5) returning *`,
+      `INSERT INTO users (first_name, last_name, password, email)
+      VALUES ($1, $2, $3, $4) returning *`,
       [
-        "1",
         req.body.first_name,
         req.body.last_name,
         req.body.password,
@@ -56,6 +54,7 @@ module.exports = (db) => {
       .then((data) => {
         user = data.rows[0];
         req.session.userID = user.id;
+        req.session.userOrg = user.org_id;
         res.redirect("/api/accounts");
       })
       .catch((err) => {

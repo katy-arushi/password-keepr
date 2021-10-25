@@ -28,7 +28,6 @@ $text-font: 'Hind Guntur', sans-serif;
 }
 
 .social {
-  //display: flex;
   font-size: 20px;
   margin-left: 30px;
   flex-direction: row;
@@ -60,7 +59,8 @@ $text-font: 'Hind Guntur', sans-serif;
 }
 
 .outer-box {
-  flex-direction: row;
+  display: flex;
+  align-items: baseline;
 }
 
 // icon stylings

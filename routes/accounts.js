@@ -9,7 +9,6 @@ const express = require("express");
 const router = express.Router();
 
 module.exports = (db) => {
-
   // GET accounts
   router.get("/accounts", (req, res) => {
     userId = req.session.userId;
@@ -22,10 +21,10 @@ module.exports = (db) => {
     )
       .then((data) => {
         const accounts = data.rows;
-        console.log("accounts", accounts);
         const templateVars = {
           accounts: accounts,
         };
+        console.log("account", data.rows);
         res.render("accounts", templateVars);
       })
       .catch((err) => {
@@ -34,25 +33,31 @@ module.exports = (db) => {
   });
   // GET new_account
   router.get("/accounts/new_account", (req, res) => {
-    res.render("new_account");
+    db.query(`SELECT * FROM categories`)
+      .then((data) => {
+        const categories = data.rows;
+        res.render("new_account", { categories });
+      })
+      .catch((err) => {
+        res.status(500).json({ error: err.message });
+      });
   });
 
   router.post("/accounts/new_account", (req, res) => {
     const userOrg = req.session.userOrg;
     db.query(
-      `INSERT INTO accounts (org_id, category_id, website_name, website_url, login, password)
-    SELECT $1, id, $2, $3, $4, $5 FROM categories WHERE website_category=$6`,
+      `INSERT INTO accounts (org_id, category_id, website_name, website_url, login, password) VALUES
+      ($1, $2, $3, $4, $5, $6) returning *`,
       [
         userOrg,
+        parseInt(req.body.category_id),
         req.body.website_name,
         req.body.website_url,
         req.body.email,
         req.body.manual_password,
-        req.body.category,
       ]
     )
       .then((data) => {
-        console.log(data.rows);
         res.redirect("/api/accounts");
       })
       .catch((err) => {

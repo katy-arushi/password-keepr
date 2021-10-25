@@ -69,17 +69,15 @@ module.exports = (db) => {
   });
 
   router.post("/organizations", (req, res) => {
-    const orgName = req.body.organization;
     const userId = req.session.userId;
+    const orgName = req.body.org_name;
     db.query(`UPDATE users SET org_id = $1 WHERE id = $2 returning *`, [
-      req.body.org_name,
+      orgName,
       userId,
     ])
-
       .then((data) => {
         const organization = data.rows[0];
         req.session.userOrg = organization.org_id;
-        console.log("data", data.rows, "req session", req.session.userOrg);
         res.redirect("/api/accounts");
       })
       .catch((err) => {

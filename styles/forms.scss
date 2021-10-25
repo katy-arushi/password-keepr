@@ -43,7 +43,7 @@ $text-font: 'Hind Guntur', sans-serif;
 .tagline { // "free open source" etc
   font-family: $header-font;
   font-size: 26px;
-  width: 60vh;
+  width: 60vw;
   text-align: center;
   margin-bottom: 50px;
   font-weight: bold;
@@ -69,6 +69,23 @@ $text-font: 'Hind Guntur', sans-serif;
 .col-12 {
   margin-bottom: 1.5em
 }
+
+// styles for org page
+
+#org-container {
+  height: 70vh;
+}
+
+#select-org {
+  margin-bottom: 0;
+}
+
+#organization {
+  margin-left: 14px;
+  margin-bottom: 15px;
+}
+
+// styles for new account page
 
 #or {
   margin-top: 5px;

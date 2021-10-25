@@ -63,7 +63,6 @@ module.exports = (db) => {
   router.get("/organizations", (req, res) => {
     db.query(`SELECT * FROM organizations`)
       .then((data) => {
-        console.log(data.rows);
         const organizations = data.rows;
         res.render("organizations", { organizations });
       })
@@ -74,7 +73,6 @@ module.exports = (db) => {
 
   router.post("/organizations", (req, res) => {
     const userId = req.session.userId;
-    console.log("req.body", req.body);
     db.query(`UPDATE users SET org_id = $1 WHERE id = $2 returning *`, [
       req.body.org_name,
       userId,

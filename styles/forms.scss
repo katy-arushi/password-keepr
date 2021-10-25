@@ -70,6 +70,15 @@ $text-font: 'Hind Guntur', sans-serif;
   margin-bottom: 1.5em
 }
 
+#or {
+  margin-top: 5px;
+  margin-bottom: 0;
+}
+
+#new-pass {
+  margin-top: 1.5em;
+}
+
 // button stylings
 
 .btn {
@@ -88,4 +97,11 @@ $text-font: 'Hind Guntur', sans-serif;
   font-weight: bold;
   margin-top: 13px;
   margin-left: 14px;
+}
+
+.btn-outline-secondary {
+  color: $text2-color;
+  background-color: $secondary-color;
+  border-color: $secondary-color;
+  font-weight: bold;
 }

@@ -4,39 +4,47 @@
 <head>
   <title>passwordb - New Account</title>
   <%- include('partials/_head') %>
-  <link rel="stylesheet" href="/styles/register.css" type="text/css"/>
+  <link rel="stylesheet" href="/styles/forms.css" type="text/css"/>
 
 </head>
 
 <body class="background">
     <%- include('partials/_header') %>
-  <div class="registration-container">
+  <div class="container">
 
-    <div class="registration-form">
-      <p class="signup-tagline"> Add a new account</p>
+    <div class="form">
+      <p class="main-action-tagline"> Add a new password</p>
+
       <form class="row g-3" action="/api/accounts/new_account" method="POST">
 
       <div class="col-12">
-        <input type="text" name="category" class="form-control" placeholder="Category" arial-labe="category">
+        <!-- <input type="text" name="category" class="form-control" placeholder="Category" arial-labe="category"> -->
+        <label for="category">Select a category:</label>
+        <select class="form-control" id="category">
+          <option>Social</option>
+          <option>Work</option>
+          <option>Health and Fitness</option>
+        </select>
       </div>
-      <div class="col-12">
-        <input type="url" name="website_url" class="form-control" placeholder="URL" arial-labe="Website URL">
-      </div>
-        <div class="col-md-6">
-          <input type="text" name="website_name" class="form-control" placeholder="Web name" aria-label="Website Name">
+
+        <div class="col-12">
+          <input type="url" name="website_url" class="form-control" placeholder="URL" arial-labe="Website URL">
         </div>
-        <div class="col-md-6">
+        <div class="col-12">
+          <input type="text" name="website_name" class="form-control" placeholder="Website name" aria-label="Website Name">
+        </div>
+        <div class="col-12">
           <input type="email" name="email" class="form-control" placeholder="Email" aria-label="email">
         </div>
         <div class="col-md-5">
           <input type="password" name="manual_password" class="form-control" placeholder="Enter Password" aria-label="Enter Password">
         </div>
-          <p>OR</p>
+          <p id="or">OR</p>
         <div class="col-md-5">
           <button type="button" class="btn btn-outline-secondary">Generate Password</button>
         </div>
-        <div class="col-12">
-          <input type="password" name="generated_password" class="form-control" placeholder="Your new password is:" arial-labe="generated password">
+        <div class="col-12" id="new-pass">
+          <input type="text" name="generated_password" class="form-control" placeholder="Your new password is:" arial-labe="generated password">
         </div>
           <button type="submit" class="btn btn-primary">Add Account</button>
         </div>

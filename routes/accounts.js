@@ -66,18 +66,19 @@ module.exports = (db) => {
   });
 
   // GET edit_password
-  router.get("/accounts/edit_password", (req, res) => {
+  router.get("/accounts/:accountId", (req, res) => {
     res.render("edit_password");
   });
 
-  router.post("/accounts/edit_password", (req, res) => {
+  router.post("/accounts/:accountId", (req, res) => {
+    const accountId = req.params.accountId;
     const userOrg = req.session.userOrg;
-
+    const userId = req.session.userId;
     const newPassword = req.body.manual_password;
 
     db.query(`UPDATE accounts SET password = $1 WHERE id = $2`, [
       newPassword,
-      "2",
+      accountId,
     ])
       .then((data) => {
         console.log(data.rows);

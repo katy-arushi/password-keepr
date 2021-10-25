@@ -57,6 +57,7 @@ app.use("/api", accountsRoutes(db));
 // Separate them into separate routes files (see above).
 
 app.get("/", (req, res) => {
+  req.session = null;
   res.render("homepage");
 });
 

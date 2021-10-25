@@ -29,7 +29,7 @@ module.exports = (db) => {
       .then((data) => {
         const user = data.rows[0];
         req.session.userId = user.id;
-        console.log(data.rows);
+        console.log(req.session.userId);
         res.redirect("/organizations");
       })
       .catch((err) => {
@@ -51,7 +51,6 @@ module.exports = (db) => {
         user = data.rows[0];
         req.session.userId = user.id;
         req.session.userOrg = user.org_id;
-        console.log("login", data.rows);
         res.redirect("/api/accounts");
       })
       .catch((err) => {
@@ -72,13 +71,15 @@ module.exports = (db) => {
   });
 
   router.post("/organizations", (req, res) => {
+    const orgName = req.body.organization;
     const userId = req.session.userId;
     db.query(`UPDATE users SET org_id = $1 WHERE id = $2 returning *`, [
       req.body.org_name,
       userId,
     ])
+
       .then((data) => {
-        console.log("org", data.rows);
+        console.log(data.rows);
         res.redirect("/api/accounts");
       })
       .catch((err) => {

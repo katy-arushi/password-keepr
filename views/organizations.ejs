@@ -4,20 +4,34 @@
 <head>
   <title>passwordb - organizations</title>
   <%- include('partials/_head') %>
+  <link rel="stylesheet" href="/styles/forms.css" type="text/css"/>
 </head>
 
-<body>
+<body class="background">
   <%- include('partials/_header') %>
-  Organizations testing page!
-  <form class="row g-3" action="/organizations" method="POST">
-    <div class="col-12">
-      <input type="text" name="organization" class="form-control" placeholder="Enter Organization" arial-labe="Organization">
+  <div class="container" id="org-container">
+    <p class="tagline-main">Join an Organization</p>
+    <p class="tagline">Join an existing organization to view all accounts and passwords.</p>
+
+    <div class="form">
+      <p class="main-action-tagline" id="select-org"> Select organization</p>
+
+      <form class="row g-3" action="/organizations" method="POST">
+        <label for="organization"></label>
+        <select class="form-control" id="organization">
+          <option>Lighthouse Labs</option>
+          <option>Web Dev Bootcamp</option>
+          <option>Data Science Bootcamp</option>
+        </select>
+        <!-- <div class="col-12">
+          <input type="text" name="organization" class="form-control" placeholder="Enter Organization" arial-labe="Organization">
+        </div> -->
+        <div>
+          <button type="submit" class="btn btn-primary">Join</button>
+        </div>
+      </form>
     </div>
   </div>
-  <button type="submit" class="btn btn-primary">Assign Org</button>
-</div>
-  </form>
-
 
 
   <!-- Bootstrap JS -->

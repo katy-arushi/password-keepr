@@ -61,16 +61,24 @@ module.exports = (db) => {
 
   // GET organizations
   router.get("/organizations", (req, res) => {
-    res.render("organizations");
+    db.query(`SELECT * FROM organizations`)
+      .then((data) => {
+        console.log(data.rows);
+        const organizations = data.rows;
+        res.render("organizations", { organizations });
+      })
+      .catch((err) => {
+        res.status(500).json({ error: err.message });
+      });
   });
 
   router.post("/organizations", (req, res) => {
-    const orgName = req.body.organization;
     const userId = req.session.userId;
-    db.query(
-      `UPDATE users SET org_id = (SELECT id FROM organizations WHERE name=$1) WHERE id=$2`,
-      [orgName, userId]
-    )
+    console.log("req.body", req.body);
+    db.query(`UPDATE users SET org_id = $1 WHERE id = $2 returning *`, [
+      req.body.org_name,
+      userId,
+    ])
       .then((data) => {
         console.log("org", data.rows);
         res.redirect("/api/accounts");

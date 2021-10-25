@@ -29,7 +29,6 @@ module.exports = (db) => {
       .then((data) => {
         const user = data.rows[0];
         req.session.userId = user.id;
-        console.log(req.session.userId);
         res.redirect("/organizations");
       })
       .catch((err) => {
@@ -50,7 +49,6 @@ module.exports = (db) => {
       .then((data) => {
         user = data.rows[0];
         req.session.userId = user.id;
-        req.session.userOrg = user.org_id;
         res.redirect("/api/accounts");
       })
       .catch((err) => {
@@ -79,7 +77,9 @@ module.exports = (db) => {
     ])
 
       .then((data) => {
-        console.log(data.rows);
+        const organization = data.rows[0];
+        req.session.userOrg = organization.org_id;
+        console.log("data", data.rows, "req session", req.session.userOrg);
         res.redirect("/api/accounts");
       })
       .catch((err) => {

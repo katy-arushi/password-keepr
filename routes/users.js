@@ -9,12 +9,6 @@ const express = require("express");
 const router = express.Router();
 
 module.exports = (db) => {
-
-  // GET organizations
-  router.get("/organizations", (req, res) => {
-    res.render("organizations");
-  });
-
   // GET register
   router.get("/register", (req, res) => {
     res.render("register");
@@ -23,10 +17,9 @@ module.exports = (db) => {
   // POST register
   router.post("/register", (req, res) => {
     db.query(
-      `INSERT INTO users (org_id, first_name, last_name, password, email)
-      VALUES ($1, $2, $3, $4, $5) returning *`,
+      `INSERT INTO users (first_name, last_name, password, email)
+      VALUES ($1, $2, $3, $4) returning *`,
       [
-        "1",
         req.body.first_name,
         req.body.last_name,
         req.body.password,
@@ -36,6 +29,7 @@ module.exports = (db) => {
       .then((data) => {
         const user = data.rows[0];
         req.session.userId = user.id;
+        console.log(req.session.userId);
         res.redirect("/organizations");
       })
       .catch((err) => {
@@ -55,11 +49,34 @@ module.exports = (db) => {
     db.query(`SELECT * FROM users WHERE email=$1`, [email])
       .then((data) => {
         user = data.rows[0];
-        req.session.userID = user.id;
+        req.session.userId = user.id;
+        req.session.userOrg = user.org_id;
         res.redirect("/api/accounts");
       })
       .catch((err) => {
-        res.status(500).jason({ error: err.message });
+        res.status(500).json({ error: err.message });
+      });
+  });
+
+  // GET organizations
+  router.get("/organizations", (req, res) => {
+    res.render("organizations");
+  });
+
+  router.post("/organizations", (req, res) => {
+    const orgName = req.body.organization;
+    const userId = req.session.userId;
+    console.log(orgName, userId);
+    db.query(
+      `UPDATE users SET org_id = (SELECT id FROM organizations WHERE name=$1) WHERE id=$2`,
+      [orgName, userId]
+    )
+      .then((data) => {
+        console.log(data.rows);
+        res.redirect("/api/accounts");
+      })
+      .catch((err) => {
+        res.status(500).json({ error: err.message });
       });
   });
 

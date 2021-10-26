@@ -29,7 +29,6 @@ module.exports = (db) => {
       .then((data) => {
         const user = data.rows[0];
         req.session.userId = user.id;
-        console.log(req.session.userId);
         res.redirect("/organizations");
       })
       .catch((err) => {
@@ -50,7 +49,7 @@ module.exports = (db) => {
       .then((data) => {
         user = data.rows[0];
         req.session.userId = user.id;
-        req.session.userOrg = user.org_id;
+        req.session.orgName = user.org_id;
         res.redirect("/api/accounts");
       })
       .catch((err) => {
@@ -60,19 +59,26 @@ module.exports = (db) => {
 
   // GET organizations
   router.get("/organizations", (req, res) => {
-    res.render("organizations");
+    db.query(`SELECT * FROM organizations`)
+      .then((data) => {
+        const organizations = data.rows;
+        res.render("organizations", { organizations });
+      })
+      .catch((err) => {
+        res.status(500).json({ error: err.message });
+      });
   });
 
   router.post("/organizations", (req, res) => {
-    const orgName = req.body.organization;
     const userId = req.session.userId;
-    console.log(orgName, userId);
-    db.query(
-      `UPDATE users SET org_id = (SELECT id FROM organizations WHERE name=$1) WHERE id=$2`,
-      [orgName, userId]
-    )
+    const orgName = req.body.org_name;
+    db.query(`UPDATE users SET org_id = $1 WHERE id = $2 returning *`, [
+      orgName,
+      userId,
+    ])
       .then((data) => {
-        console.log(data.rows);
+        const organization = data.rows[0];
+        req.session.orgName = organization.org_id;
         res.redirect("/api/accounts");
       })
       .catch((err) => {

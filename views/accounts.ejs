@@ -42,7 +42,9 @@
               </div>
 
               <div class="edit-button">
-                <i class="fas fa-edit"></i>
+                <% for(let account of accounts) { %>
+                <a href="/api/accounts/<%= account.id %>"><i class="fas fa-edit"></i></a>
+                <% } %>
               </div>
 
               <div class="delete-button">

@@ -21,7 +21,7 @@ module.exports = (db) => {
     )
       .then((data) => {
         const accounts = data.rows;
-        console.log("accounts", accounts);
+        console.log(accounts);
         const templateVars = {
           accounts: accounts,
         };
@@ -44,7 +44,8 @@ module.exports = (db) => {
   });
 
   router.post("/accounts/new_account", (req, res) => {
-    const userOrg = req.session.userOrg;
+    const userOrg = req.session.orgName;
+    console.log("userOrg", userOrg);
     db.query(
       `INSERT INTO accounts (org_id, category_id, website_name, website_url, login, password) VALUES
       ($1, $2, $3, $4, $5, $6) returning *`,
@@ -67,19 +68,27 @@ module.exports = (db) => {
 
   // GET edit_password
   router.get("/accounts/:accountId", (req, res) => {
-    res.render("edit_password");
+    const accountId = req.params.accountId;
+    db.query(`SELECT * FROM accounts WHERE id = $1`, [accountId])
+      .then((data) => {
+        const templateVars = data.rows[0];
+        console.log("templateVars", templateVars);
+        res.render("edit_password", { templateVars });
+      })
+      .catch((err) => {
+        res.status(500).json({ error: err.message });
+      });
   });
 
   router.post("/accounts/:accountId", (req, res) => {
     const accountId = req.params.accountId;
-    const userOrg = req.session.userOrg;
-    const userId = req.session.userId;
+    const userOrg = req.session.orgName;
     const newPassword = req.body.manual_password;
 
-    db.query(`UPDATE accounts SET password = $1 WHERE id = $2`, [
-      newPassword,
-      accountId,
-    ])
+    db.query(
+      `UPDATE accounts SET password = $1 WHERE id = $2 AND org_id = $3`,
+      [newPassword, accountId, userOrg]
+    )
       .then((data) => {
         console.log(data.rows);
         res.redirect("/api/accounts");

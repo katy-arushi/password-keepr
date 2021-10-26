@@ -49,6 +49,7 @@ module.exports = (db) => {
       .then((data) => {
         user = data.rows[0];
         req.session.userId = user.id;
+        req.session.orgName = user.org_id;
         res.redirect("/api/accounts");
       })
       .catch((err) => {
@@ -77,7 +78,7 @@ module.exports = (db) => {
     ])
       .then((data) => {
         const organization = data.rows[0];
-        req.session.userOrg = organization.org_id;
+        req.session.orgName = organization.org_id;
         res.redirect("/api/accounts");
       })
       .catch((err) => {

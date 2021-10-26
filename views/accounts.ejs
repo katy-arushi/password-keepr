@@ -13,8 +13,6 @@
 
   <%- include('partials/_header') %>
 
-  <!-- <table>
-    <tbody> -->
 
       <h3 id="pageTitle">My Passwords</h3>
 
@@ -125,19 +123,47 @@
           </div>
       </div>
 
-      <!-- =======
+  <!-- dynamically -->
+  <table>
+    <tbody>
       <% for(let account of accounts) { %>
-        <tr>
-          <td><%= account.website_name %></td>
+          <div id="box-1" class="boxed">
+            <div class="url">
+              <a href="<%= account.website_url %>" style="color: #3A6B7E;font-weight: bolder;"><%= account.website_url %></a>
+            </div>
+
+            <div class="web-name">
+              <%= account.website_name %>
+            </div>
+
+            <div class="password">
+              <%= account.password %>
+            </div>
+
+            <div class="icons">
+              <div class="copy-button">
+                <i class="fas fa-clone"></i>
+              </div>
+
+              <div class="edit-button">
+                <i class="fas fa-edit"></i>
+              </div>
+
+              <div class="delete-button">
+                <i class="fas fa-trash-alt"></i>
+              </div>
+            </div>
+          </div>
+          <!-- <td><%= account.website_name %></td>
           <td><%= account.website_url %></td>
           <td><%= account.login %></td>
           <td><%= account.password %></td>
-          </tr>
+          <%= account.category %>
+          -->
+          <!-- </tr> -->
       <% } %>
-      >>>>>>> 1b34c1d82ab78998b358ad7a7134689fb8f7e92f -->
-
-    <!-- </tbody>
-  </table> -->
+    </tbody>
+  </table>
 
   <!-- Bootstrap JS -->
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

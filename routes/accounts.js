@@ -18,7 +18,7 @@ module.exports = (db) => {
     JOIN organizations ON organizations.id = accounts.org_id
     JOIN users ON users.org_id = organizations.id
     WHERE users.id = $1`,
-    [userId]
+      [userId]
     )
       .then((data) => {
         const accounts = data.rows;
@@ -37,6 +37,7 @@ module.exports = (db) => {
     db.query(`SELECT * FROM categories`)
       .then((data) => {
         const categories = data.rows;
+        // const categories = { categories: data.rows };
         res.render("new_account", { categories });
       })
       .catch((err) => {
@@ -65,6 +66,10 @@ module.exports = (db) => {
       .catch((err) => {
         res.status(505).json({ error: err.message });
       });
+  });
+
+  router.get("/accounts/generate_password", (req, res) => {
+    res.render("generate_password");
   });
 
   // GET edit_password
@@ -98,5 +103,10 @@ module.exports = (db) => {
         res.status(505).json({ error: err.message });
       });
   });
+
+  router.get("/accounts/generate_password", (req, res) => {
+    res.render("generate_password");
+  });
+
   return router;
 };

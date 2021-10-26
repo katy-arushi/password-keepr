@@ -14,11 +14,12 @@ module.exports = (db) => {
   router.get("/accounts", (req, res) => {
     userId = req.session.userId;
     db.query(
-      `SELECT accounts.* FROM accounts
-    JOIN organizations ON organizations.id = org_id
-    JOIN users ON organizations.id = users.org_id
-    WHERE users.id=$1`,
-      [userId]
+      `SELECT accounts.*, categories.website_category AS category FROM accounts
+    JOIN categories ON categories.id = accounts.category_id
+    JOIN organizations ON organizations.id = accounts.org_id
+    JOIN users ON users.org_id = organizations.id
+    WHERE users.id = $1`,
+    [userId]
     )
       .then((data) => {
         const accounts = data.rows;

@@ -73,6 +73,7 @@ module.exports = (db) => {
   });
 
   router.post("/accounts/generate_password", (req, res) => {
+    console.log(req.body);
     res.redirect("/api/accounts/generate_password");
   });
 

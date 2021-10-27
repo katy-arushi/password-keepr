@@ -12,10 +12,6 @@ $(document).ready(function () {
   let numberCase = charCodeRange(48, 57);
   let symbolCase = charCodeRange(33, 47);
 
-  // function generateSymbol() {
-  //   return String.fromCharCode(Math.floor(Math.random() * 14) + 33);
-  // }
-
   $("#password_gen").submit(function (event) {
     event.preventDefault();
     let passwordLength = $(this).find("#passwordLength").val();
@@ -38,13 +34,12 @@ $(document).ready(function () {
     if (symbol) {
       charCodeArr.push(symbolCase);
     }
-    console.log(charCodeArr.flat());
-    const flatArray = charCodeArr.flat();
+    const flatCharCodeArr = charCodeArr.flat();
     let password = [];
     for (let i = 0; i < passwordLength; i++) {
       password.push(
         String.fromCharCode(
-          flatArray[Math.floor(Math.random() * flatArray.length)]
+          flatCharCodeArr[Math.floor(Math.random() * flatCharCodeArr.length)]
         )
       );
     }

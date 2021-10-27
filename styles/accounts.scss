@@ -18,6 +18,12 @@ $text-font: 'Hind Guntur', sans-serif;
   font-weight: bold;
 }
 
+.icon-box {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
 .password-category {
   font-family: $header-font;
   font-size: 20px;
@@ -27,16 +33,15 @@ $text-font: 'Hind Guntur', sans-serif;
   display: flex;
 }
 
-.social {
+.social, .work, .entertainment, .health {
   font-size: 20px;
   margin-left: 30px;
   flex-direction: row;
 }
 
-.icon-box {
+.outer-box {
   display: flex;
-  flex-direction: row;
-  align-items: center;
+  align-items: baseline;
 }
 
 .boxed {
@@ -49,18 +54,12 @@ $text-font: 'Hind Guntur', sans-serif;
   padding: 10px;
 }
 
-#box-2{
-  margin-top: 30px;
+.login, .url, .password {
+  padding-left: 15px;
 }
 
-.work {
-  font-size: 20px;
-  margin-left: 30px;
-}
-
-.outer-box {
-  display: flex;
-  align-items: baseline;
+.url {
+  padding-top: 5px;
 }
 
 // icon stylings
@@ -73,12 +72,7 @@ $text-font: 'Hind Guntur', sans-serif;
   margin: 20px;
 }
 
-.fa-people-arrows {
-  padding-left: 35px;
-  padding-top: 20px;
-}
-
-.fa-briefcase {
+.fa-people-arrows, .fa-briefcase, .fa-theater-masks, .fa-walking {
   padding-left: 35px;
   padding-top: 20px;
 }

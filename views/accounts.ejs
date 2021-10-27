@@ -5,167 +5,71 @@
   <title>passwordb | accounts</title>
   <%- include('partials/_head') %>
   <link rel="stylesheet" href="/styles/accounts.css" type="text/css"/>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
 </head>
 
 <body>
-
   <%- include('partials/_header') %>
 
+    <h3 id="pageTitle">My Passwords</h3>
 
-      <h3 id="pageTitle">My Passwords</h3>
+    <% for(let account of accounts) { %>
 
       <div class="icon-box">
-        <i class="fas fa-people-arrows"></i>
-        <h5 class="password-category">Social</h5>
+        <% if (account.category === 'Social') { %>
+          <i class="fas fa-people-arrows"></i>
+        <% } else if (account.category === 'Work') { %>
+          <i class="fas fa-briefcase"></i>
+        <% } else if (account.category === 'Entertainment') { %>
+          <i class="fas fa-theater-masks"></i>
+        <% } else if (account.category === 'Health') { %>
+          <i class="fas fa-walking"></i>
+        <% } %>
+          <h5 class="password-category"><%= account.category %></h5>
       </div>
 
-      <div class="social">
-        <div class="outer-box">
-          <div id="box-1" class="boxed">
-            <div class="url">
-              <a href="http://www.facebook.com" style="color: #3A6B7E;font-weight: bolder;">www.facebook.com</a>
-            </div>
-
-            <div class="web-name">
-              Facebook
-            </div>
-
-            <div class="password">
-              e2o76a4!
-            </div>
-
-            <div class="icons">
-              <div class="copy-button">
-                <i class="fas fa-clone"></i>
-              </div>
-
-              <div class="edit-button">
-                <% for(let account of accounts) { %>
-                <a href="/api/accounts/<%= account.id %>"><i class="fas fa-edit"></i></a>
-                <% } %>
-              </div>
-
-              <div class="delete-button">
-                <i class="fas fa-trash-alt"></i>
-              </div>
-            </div>
-          </div>
-
-
-          <div>
-            <div id="box-2" class="boxed">
-              <div class="url">
-                <a href="http://www.slack.com" style="color: #3A6B7E;font-weight: bolder;">www.slack.com</a>
-              </div>
-
-              <div class="web-name">
-                Slack
-              </div>
-
-              <div class="password">
-                Z63f57!
-              </div>
-
-              <div class="icons">
-                <div class="copy-button">
-                  <i class="fas fa-clone"></i>
+      <table>
+        <tbody>
+          <div class="<%= (account.category).toLowerCase(); %>">
+            <div class="outer-box">
+              <div id="box-1" class="boxed">
+                <div class="url">
+                  <a href="<%= account.website_url %>" style="color: #3A6B7E;font-weight: bolder;"><%= account.website_name %></a>
                 </div>
 
-                <div class="edit-button">
-                  <i class="fas fa-edit"></i>
+                <div class="login">
+                  <%= account.login %>
                 </div>
 
-                <div class=delete-button>
-                  <i class="fas fa-trash-alt"></i>
-                </div>
-              </div>
-
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-    <div class="icon-box">
-      <i class="fas fa-briefcase"></i>
-      <h5 class="password-category">Work</h5>
-    </div>
-
-      <div class="work">
-          <div class="outer-box">
-            <div id="box-3" class="boxed">
-              <div class="url">
-                <a href="https://flex-web.compass.lighthouselabs.ca/" style="color: #3A6B7E;font-weight: bolder;">www.compass.com</a>
-              </div>
-
-              <div class="web-name">
-                Compass
-              </div>
-
-              <div class="password">
-                e2o76a4!
-              </div>
-
-              <div class="icons">
-                <div class="copy-button">
-                  <i class="fas fa-clone"></i>
+                <div class="password">
+                  <%= account.password %>
                 </div>
 
-                <div class="edit-button">
-                  <i class="fas fa-edit"></i>
+                <div class="icons">
+                  <div class="copy-button">
+                    <i class="fas fa-clone"></i>
+                  </div>
+
+                  <div class="edit-button">
+                    <a href="/api/accounts/<%= account.id %>"><i class="fas fa-edit"></i></a>
+                  </div>
+
+                  <div class="delete-button">
+                    <i class="fas fa-trash-alt"></i>
+                  </div>
                 </div>
-
-                <div class=delete-button>
-                  <i class="fas fa-trash-alt"></i>
-                </div>
               </div>
-            </div>
-          </div>
-      </div>
-
-  <!-- dynamically -->
-  <table>
-    <tbody>
-      <% for(let account of accounts) { %>
-          <div id="box-1" class="boxed">
-            <div class="url">
-              <a href="<%= account.website_url %>" style="color: #3A6B7E;font-weight: bolder;"><%= account.website_url %></a>
-            </div>
-
-            <div class="web-name">
-              <%= account.website_name %>
-            </div>
-
-            <div class="password">
-              <%= account.password %>
-            </div>
-
-            <div class="icons">
-              <div class="copy-button">
-                <i class="fas fa-clone"></i>
-              </div>
-
-              <div class="edit-button">
-                <i class="fas fa-edit"></i>
-              </div>
-
-              <div class="delete-button">
-                <i class="fas fa-trash-alt"></i>
-              </div>
-            </div>
-          </div>
-          <!-- <td><%= account.website_name %></td>
-          <td><%= account.website_url %></td>
-          <td><%= account.login %></td>
-          <td><%= account.password %></td>
-          <%= account.category %>
-          -->
-          <!-- </tr> -->
-      <% } %>
-    </tbody>
-  </table>
+              <!--
+              <td><%= account.website_name %></td>
+              <td><%= account.website_url %></td>
+              <td><%= account.login %></td>
+              <td><%= account.password %></td>
+              <%= account.category %>
+              -->
+              <!-- </tr> -->
+            </tbody>
+          </table>
+    <% } %>
 
   <!-- Bootstrap JS -->
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

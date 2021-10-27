@@ -3,10 +3,14 @@ DROP TABLE IF EXISTS organizations CASCADE;
 DROP TABLE IF EXISTS accounts CASCADE;
 DROP TABLE IF EXISTS categories CASCADE;
 
-
 CREATE TABLE organizations (
   id SERIAL PRIMARY KEY NOT NULL,
   name VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE categories (
+  id SERIAL PRIMARY KEY NOT NULL,
+  website_category VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE users (
@@ -16,11 +20,6 @@ CREATE TABLE users (
   last_name VARCHAR(255) NOT NULL,
   password VARCHAR(255) NOT NULL,
   email VARCHAR(255)
-);
-
-CREATE TABLE categories (
-  id SERIAL PRIMARY KEY NOT NULL,
-  website_category VARCHAR(255) NOT NULL
 );
 
 
@@ -34,5 +33,3 @@ CREATE TABLE accounts (
   password VARCHAR(255) NOT NULL,
   is_active BOOLEAN NOT NULL DEFAULT TRUE
 );
-
-

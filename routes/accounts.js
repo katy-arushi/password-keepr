@@ -72,6 +72,10 @@ module.exports = (db) => {
     res.render("generate_password");
   });
 
+  router.post("/accounts/generate_password", (req, res) => {
+    res.redirect("/api/accounts/generate_password");
+  });
+
   // GET edit_password
   router.get("/accounts/:accountId", (req, res) => {
     const accountId = req.params.accountId;
@@ -102,10 +106,6 @@ module.exports = (db) => {
       .catch((err) => {
         res.status(505).json({ error: err.message });
       });
-  });
-
-  router.get("/accounts/generate_password", (req, res) => {
-    res.render("generate_password");
   });
 
   return router;

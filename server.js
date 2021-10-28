@@ -58,7 +58,11 @@ app.use("/api", accountsRoutes(db));
 
 app.get("/", (req, res) => {
   res.render("homepage");
-  console.log("homepage", req.session.userId, req.session.orgName);
+});
+
+app.get("/test", (req, res) => {
+  const { name, limit } = req.query;
+  res.json({ message: "hello", name, limit });
 });
 
 app.listen(PORT, () => {

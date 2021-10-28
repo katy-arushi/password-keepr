@@ -45,7 +45,6 @@ module.exports = (db) => {
 
   router.post("/accounts/new_account", (req, res) => {
     const userOrg = req.session.orgName;
-    console.log("test", req.body);
     if (
       !req.body.website_name ||
       !req.body.website_url ||

@@ -1,4 +1,8 @@
 $(document).ready(function () {
+  $.get("https://pokeapi.co/api/v2/pokemon/4/", function (data, status) {
+    alert("Data: " + JSON.stringify(data) + "\nStatus: " + status);
+  });
+
   const charCodeRange = function (startRange, endRange) {
     let range = [];
     for (let i = startRange; i < endRange; i++) {
@@ -12,15 +16,16 @@ $(document).ready(function () {
   let numberCase = charCodeRange(48, 57);
   let symbolCase = charCodeRange(33, 47);
 
-  $("#password_gen").submit(function (event) {
+  $("#password_gen").on("submit", function (event) {
     event.preventDefault();
+
     let passwordLength = $(this).find("#passwordLength").val();
     let upper = $(this).find("#upperCaseBox").is(":checked");
     let lower = $(this).find("#lowerCaseBox").is(":checked");
     let number = $(this).find("#numbersBox").is(":checked");
     let symbol = $(this).find("#symbolsBox").is(":checked");
-
-    $('input[name="generated_password"').empty;
+    console.log(passwordLength, upper, lower, number, symbol);
+    $('input[name="manual_password"').empty;
     let charCodeArr = [];
     if (upper) {
       charCodeArr.push(upperCase);
@@ -43,8 +48,7 @@ $(document).ready(function () {
         )
       );
     }
-    $('input[name="generated_password"').val(
-      `Your new password is: ${password.join("")}`
-    );
+    $('input[name="manual_password"').val(password.join(""));
+    $("#generatePasswordModal").modal("hide");
   });
 });

@@ -44,7 +44,7 @@ $(document).ready(function () {
       );
     }
     $('input[name="generated_password"').val(
-      `Your new password is: ${password.join("")}`
+      `${password.join("")}`
     );
   });
 });

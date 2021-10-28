@@ -46,13 +46,22 @@ module.exports = (db) => {
   router.post("/login", (req, res) => {
     const password = req.body.password;
     const email = req.body.email;
+    if (!email || !password) {
+      return res.status(403).send("Email or password cannot be empty");
+    }
+
     db.query(`SELECT * FROM users WHERE email=$1`, [email])
       .then((data) => {
         user = data.rows[0];
+        if (!user) {
+          res.send("Email login does not exist!");
+        }
+        if (password !== user.password) {
+          res.send("Incorrect Password!");
+        }
         req.session.userId = user.id;
         req.session.orgName = user.org_id;
         res.redirect("/api/accounts");
-        console.log("after login", req.session.userId, req.session.orgName);
       })
       .catch((err) => {
         res.status(500).json({ error: err.message });
@@ -89,9 +98,7 @@ module.exports = (db) => {
   });
 
   router.post("/logout", (req, res) => {
-    console.log("before", req.session.userId, req.session.orgName);
     req.session = null;
-    // console.log("after", req.session.userId, req.session.orgName);
     res.redirect("/");
   });
 

@@ -5,117 +5,105 @@
   <title>passwordb | new account</title>
   <%- include('partials/_head') %>
   <link rel="stylesheet" href="/styles/forms.css" type="text/css"/>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
 </head>
 
 <body class="background">
-    <%- include('partials/_header') %>
+  <%- include('partials/_header') %>
   <div class="container form">
 
       <p class="main-action-tagline"> Add a new account</p>
 
       <form class="row g-3" action="/api/accounts/new_account" method="POST">
 
-      <div class="col-12">
-        <label for="category">Select a category:</label>
-        <select name="category_id" class="form-control" id="category">
-          <% for (let category of categories) {%>
-            <option value=<%= category.id %>><%= category.website_category %></option>
-            <%}%>
-        </select>
-      </div>
+          <div class="col-12">
+            <label for="category">Select a category:</label>
+            <select name="category_id" class="form-control" id="category">
+              <% for (let category of categories) {%>
+                <option value=<%= category.id %>><%= category.website_category %></option>
+              <%}%>
+            </select>
+          </div>
 
-        <div class="col-12">
-          <input type="url" name="website_url" class="form-control" placeholder="URL" arial-labe="Website URL">
-        </div>
-        <div class="col-12">
-          <input type="text" name="website_name" class="form-control" placeholder="Website name" aria-label="Website Name">
-        </div>
-        <div class="col-12">
-          <input type="email" name="email" class="form-control" placeholder="Email" aria-label="email">
-        </div>
-        <div class="col-md-5">
-          <input type="text" name="manual_password" class="form-control" placeholder="Enter a password" aria-label="Enter a password">
-        </div>
+          <div class="col-12">
+            <input type="url" name="website_url" class="form-control" placeholder="URL" arial-labe="Website URL">
+          </div>
+          <div class="col-12">
+            <input type="text" name="website_name" class="form-control" placeholder="Website name" aria-label="Website Name">
+          </div>
+          <div class="col-12">
+            <input type="email" name="email" class="form-control" placeholder="Email" aria-label="email">
+          </div>
+          <div class="col-md-5">
+            <input type="text" name="manual_password" class="form-control" placeholder="Enter a password" aria-label="Enter a password">
+          </div>
           <p id="or">OR</p>
 
-
-        <!-- Button trigger modal -->
-        <div class="col-md-5">
-          <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#generatePasswordModal">Generate Password</button>
-        </div>
-
-        <div class="col-12" id="new-pass">
-          <div class="input-group">
-            <input type="text" name="generated_password" class="form-control" placeholder="Your new password is: "  arial-label="generated password">
-             <span id="copyButton" class="input-group-addon btn" title="Click to copy">
-              <i class="fas fa-copy" aria-hidden="true"></i>
-             </span>
+          <!-- Button trigger modal -->
+          <div class="col-md-5">
+            <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#generatePasswordModal">Generate Password</button>
           </div>
-        </div>
 
-        <button type="submit" class="btn btn-primary">Add Account</button>
+          <div class="col-12" id="new-pass">
+            <div class="input-group">
+              <input type="text" name="generated_password" class="form-control" placeholder="Your new password is: "  arial-label="generated password">
+              <span id="copyButton" class="input-group-addon btn" title="Click to copy">
+                <i class="fas fa-copy" aria-hidden="true"></i>
+              </span>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary">Add Account</button>
 
        </form>
   </div>
 
 
-          <!-- Modal -->
-          <div class="modal fade" id="generatePasswordModal" tabindex="-1" role="dialog" aria-labelledby="generatePasswordModalTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <div class="form">
-                    <p class="main-action-tagline"> Generate random password</p>
+  <!-- Modal -->
+  <div class="modal fade" id="generatePasswordModal" tabindex="-1" role="dialog" aria-labelledby="generatePasswordModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="form">
+            <p class="main-action-tagline"> Generate random password</p>
 
-                     <form id="password_gen" class="row g-3">
-                     <!-- <form id="password_gen" class="row g-3" action="/api/accounts/new_account" method="GET"> -->
-                      <div class="col-12" id="new-pass">
-                      <div class="wrapper">
-                        <label for="passwordLength" class="title">Password Length:</label>
-                        <input type="range" name="passwordLength" id="passwordLength" min="5" max="15" value="10" step="1" class="pwRange" oninput="showLength(this.value)"><span id ="length">10</span>
-                          <script>
-                             function showLength(newLength)
-                              {
-                                document.getElementById('length').innerHTML = newLength;
-                              }
-                           </script>
-                      </div>
+              <form id="password_gen" class="row g-3">
+              <!-- <form id="password_gen" class="row g-3" action="/api/accounts/new_account" method="GET"> -->
+              <div class="col-12" id="new-pass">
+              <div class="wrapper">
+                <label for="passwordLength" class="title">Password Length:</label>
+                <input type="range" name="passwordLength" id="passwordLength" min="5" max="15" value="10" step="1" class="pwRange" oninput="showLength(this.value)"><span id ="length">10</span>
+                  <script>
+                      function showLength(newLength)
+                      {
+                        document.getElementById('length').innerHTML = newLength;
+                      }
+                    </script>
+              </div>
 
-                      <div id="passwordChoice">
-                        <div class="tickboxes">
-                          <label for="upperCase" class="formLabel">Uppercase</label>
-                            <input type="checkbox" name="upperCase" id="upperCaseBox">
-                          <label for="lowerCase" class="formLabel">Lowercase</label>
-                            <input type="checkbox" name="lowerCase" id="lowerCaseBox" class="lowerCase">
-                            <br>
-                          <label for="numbers" class="formLabel">Numbers</label>
-                            <input type="checkbox" name="numbers" id="numbersBox">
-                          <label for="symbols" class="formLabel">Symbols</label>
-                            <input type="checkbox" name="symbols" id="symbolsBox">
-                            </br>
-                        </div>
-                      </div>
-
-                      <div class="text-center">
-                        <button type="submit" class="btn btn-primary" >Generate Password</button>
-                       </div>
-                      </form>
-                  </div>
+              <div id="passwordChoice">
+                <div class="tickboxes">
+                  <label for="upperCase" class="formLabel">Uppercase</label>
+                    <input type="checkbox" name="upperCase" id="upperCaseBox">
+                  <label for="lowerCase" class="formLabel">Lowercase</label>
+                    <input type="checkbox" name="lowerCase" id="lowerCaseBox" class="lowerCase">
+                    <br>
+                  <label for="numbers" class="formLabel">Numbers</label>
+                    <input type="checkbox" name="numbers" id="numbersBox">
+                  <label for="symbols" class="formLabel">Symbols</label>
+                    <input type="checkbox" name="symbols" id="symbolsBox">
+                    </br>
                 </div>
               </div>
-            </div>
+
+              <div class="text-center">
+                <button type="submit" class="btn btn-primary" >Generate Password</button>
+                </div>
+              </form>
           </div>
-
-  <!-- Bootstrap JS -->
-  <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-  <script type="text/javascript" src="/scripts/password_generator.js"></script>
-
+        </div>
+      </div>
+    </div>
+  </div>
 
 </body>
-
 </html>

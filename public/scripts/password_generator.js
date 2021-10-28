@@ -1,8 +1,4 @@
 $(document).ready(function () {
-  $.get("https://pokeapi.co/api/v2/pokemon/4/", function (data, status) {
-    alert("Data: " + JSON.stringify(data) + "\nStatus: " + status);
-  });
-
   const charCodeRange = function (startRange, endRange) {
     let range = [];
     for (let i = startRange; i < endRange; i++) {

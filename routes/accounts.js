@@ -25,6 +25,7 @@ module.exports = (db) => {
         const templateVars = {
           accounts: accounts,
         };
+        console.log(accounts);
         res.render("accounts", templateVars);
       })
       .catch((err) => {

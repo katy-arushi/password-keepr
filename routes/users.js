@@ -52,6 +52,7 @@ module.exports = (db) => {
         req.session.userId = user.id;
         req.session.orgName = user.org_id;
         res.redirect("/api/accounts");
+        console.log("after login", req.session.userId, req.session.orgName);
       })
       .catch((err) => {
         res.status(500).json({ error: err.message });
@@ -85,6 +86,13 @@ module.exports = (db) => {
       .catch((err) => {
         res.status(500).json({ error: err.message });
       });
+  });
+
+  router.post("/logout", (req, res) => {
+    console.log("before", req.session.userId, req.session.orgName);
+    req.session = null;
+    // console.log("after", req.session.userId, req.session.orgName);
+    res.redirect("/");
   });
 
   return router;

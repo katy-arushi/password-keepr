@@ -46,9 +46,10 @@
                 <a href="/api/accounts/<%= account.id %>"><i class="fas fa-edit"></i></a>
                 <% } %>
               </div>
-
               <div class="delete-button">
-                <i class="fas fa-trash-alt"></i>
+                <% for(let account of accounts) { %>
+                  <a href="/api/accounts/<%= account.id %>/delete"><i class="fas fa-trash-alt"></i></a>
+                  <% } %>
               </div>
             </div>
           </div>

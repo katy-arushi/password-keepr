@@ -44,6 +44,7 @@ $(document).ready(function () {
         )
       );
     }
+    console.log(password.join);
     $('input[name="manual_password"').val(password.join(""));
     $("#generatePasswordModal").modal("hide");
   });

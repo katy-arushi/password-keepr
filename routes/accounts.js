@@ -9,7 +9,6 @@ const express = require("express");
 const router = express.Router();
 
 module.exports = (db) => {
-
   // GET accounts
   router.get("/accounts", (req, res) => {
     userId = req.session.userId;
@@ -34,7 +33,6 @@ module.exports = (db) => {
       });
   });
 
-  
   // GET new_account
   router.get("/accounts/new_account", (req, res) => {
     db.query(`SELECT * FROM categories`)
@@ -118,6 +116,7 @@ module.exports = (db) => {
     const accountId = req.params.accountId;
     const userOrg = req.session.orgName;
     const newPassword = req.body.manual_password;
+    console.log(newPassword);
 
     db.query(
       `UPDATE accounts SET password = $1 WHERE id = $2 AND org_id = $3`,

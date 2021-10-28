@@ -28,61 +28,6 @@
           <h5 class="password-category"><%= account.category %></h5>
       </div>
 
-      <!-- <div class="social">
-        <div class="outer-box">
-          <div id="box-1" class="boxed">
-            <div class="url">
-              <a href="http://www.facebook.com" style="color: #3A6B7E;font-weight: bolder;">www.facebook.com</a>
-            </div>
-
-            <div class="web-name">
-              Facebook
-            </div>
-
-            <div class="password">
-              e2o76a4!
-            </div>
-
-            <div class="icons">
-              <div class="copy-button">
-                <i class="fas fa-clone"></i>
-              </div>
-
-              <div class="edit-button">
-                <% for(let account of accounts) { %>
-                <a href="/api/accounts/<%= account.id %>"><i class="fas fa-edit"></i></a>
-                <% } %>
-              </div>
-              <% for(let account of accounts) { %>
-              <form action="/api/accounts/<%= account.id %>/delete" method="POST">
-              <div class="delete-button">
-
-                  <button type="submit"><i class="fas fa-trash-alt"></i></button>
-                  <% } %>
-              </div>
-            </form>
-            </div>
-          </div>
-
-
-          <div>
-            <div id="box-2" class="boxed">
-              <div class="url">
-                <a href="http://www.slack.com" style="color: #3A6B7E;font-weight: bolder;">www.slack.com</a>
-              </div>
-
-              <div class="web-name">
-                Slack
-              </div>
-
-              <div class="password">
-                Z63f57!
-              </div>
-
-              <div class="icons">
-                <div class="copy-button">
-                  <i class="fas fa-clone"></i> -->
-
       <table>
         <tbody>
           <div class="<%= (account.category).toLowerCase(); %>">
@@ -90,7 +35,6 @@
               <div id="box-1" class="boxed">
                 <div class="url">
                   <a href="<%= account.website_url %>" style="color: #3A6B7E;font-weight: bolder;"><%= account.website_name %></a>
-
                 </div>
 
                 <div class="login">
@@ -110,8 +54,9 @@
                     <a href="/api/accounts/<%= account.id %>" style="color: black;"> <i class="fas fa-edit"></i></a>
                   </div>
 
+                <form action="/api/accounts/<%= account.id %>/delete" method="POST">
                   <div class="delete-button">
-                    <i class="fas fa-trash-alt"></i>
+                    <button type="submit"><i class="fas fa-trash-alt"></i></button>
                   </div>
                 </div>
               </div>

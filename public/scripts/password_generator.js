@@ -1,5 +1,5 @@
-$(document).ready(function () {
-  const charCodeRange = function (startRange, endRange) {
+$(document).ready(function() {
+  const charCodeRange = function(startRange, endRange) {
     let range = [];
     for (let i = startRange; i < endRange; i++) {
       range.push(i);
@@ -12,7 +12,7 @@ $(document).ready(function () {
   let numberCase = charCodeRange(48, 57);
   let symbolCase = charCodeRange(33, 47);
 
-  $("#password_gen").submit(function (event) {
+  $("#password_gen").submit(function(event) {
     event.preventDefault();
     let passwordLength = $(this).find("#passwordLength").val();
     let upper = $(this).find("#upperCaseBox").is(":checked");

@@ -57,10 +57,9 @@ app.use("/api", accountsRoutes(db));
 // Separate them into separate routes files (see above).
 
 app.get("/", (req, res) => {
-  req.session = null;
   res.render("homepage");
+  console.log("homepage", req.session.userId, req.session.orgName);
 });
-
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);

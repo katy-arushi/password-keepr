@@ -22,7 +22,6 @@ module.exports = (db) => {
     )
       .then((data) => {
         const accounts = data.rows;
-        console.log(accounts);
         const templateVars = {
           accounts: accounts,
         };
@@ -37,7 +36,6 @@ module.exports = (db) => {
     db.query(`SELECT * FROM categories`)
       .then((data) => {
         const categories = data.rows;
-        // const categories = { categories: data.rows };
         res.render("new_account", { categories });
       })
       .catch((err) => {
@@ -47,7 +45,15 @@ module.exports = (db) => {
 
   router.post("/accounts/new_account", (req, res) => {
     const userOrg = req.session.orgName;
-    console.log("userOrg", userOrg);
+    console.log("test", req.body);
+    if (
+      !req.body.website_name ||
+      !req.body.website_url ||
+      !req.body.email ||
+      !req.body.manual_password
+    ) {
+      return res.status(505).send("Field cannot be blank");
+    }
     db.query(
       `INSERT INTO accounts (org_id, category_id, website_name, website_url, login, password) VALUES
       ($1, $2, $3, $4, $5, $6) returning *`,
@@ -73,8 +79,23 @@ module.exports = (db) => {
   });
 
   router.post("/accounts/generate_password", (req, res) => {
-    console.log(req.body);
     res.redirect("/api/accounts/generate_password");
+  });
+
+  router.post("/accounts/:accountId/delete", (req, res) => {
+    const accountId = req.params.accountId;
+    const userOrg = req.session.orgName;
+
+    db.query(`DELETE FROM accounts WHERE id = $1 AND org_id = $2`, [
+      accountId,
+      userOrg,
+    ])
+      .then((data) => {
+        res.redirect("/api/accounts");
+      })
+      .catch((err) => {
+        res.status(505).json({ error: err.message });
+      });
   });
 
   // GET edit_password
@@ -83,7 +104,6 @@ module.exports = (db) => {
     db.query(`SELECT * FROM accounts WHERE id = $1`, [accountId])
       .then((data) => {
         const templateVars = data.rows[0];
-        console.log("templateVars", templateVars);
         res.render("edit_password", { templateVars });
       })
       .catch((err) => {
@@ -101,7 +121,6 @@ module.exports = (db) => {
       [newPassword, accountId, userOrg]
     )
       .then((data) => {
-        console.log(data.rows);
         res.redirect("/api/accounts");
       })
       .catch((err) => {

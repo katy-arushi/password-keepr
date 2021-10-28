@@ -90,6 +90,9 @@ $text-font: 'Hind Guntur', sans-serif;
 #or {
   margin-top: 5px;
   margin-bottom: 0;
+  padding-left: 30px;
+  padding-right: 30px;
+  font-weight: bold;
 }
 
 #new-pass {
@@ -138,8 +141,8 @@ $text-font: 'Hind Guntur', sans-serif;
 }
 
 #passwordLength {
-  width: 80%;
-  max-width: 550px;
+  width: 70%;
+  max-width: 500px;
   margin-left: 1em;
   align-self: center;
 }
@@ -183,7 +186,7 @@ $text-font: 'Hind Guntur', sans-serif;
 
 #copyButton {
   cursor: pointer;
-  border: 1px solid #cac3c3;
+  border: 1px solid #ced4da;
   border-width: initial;
   border-radius: 8px;
   width: 50px;

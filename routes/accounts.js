@@ -82,6 +82,22 @@ module.exports = (db) => {
     res.redirect("/api/accounts/generate_password");
   });
 
+  router.post("/accounts/:accountId/delete", (req, res) => {
+    const accountId = req.params.accountId;
+    const userOrg = req.session.orgName;
+
+    db.query(`DELETE FROM accounts WHERE id = $1 AND org_id = $2`, [
+      accountId,
+      userOrg,
+    ])
+      .then((data) => {
+        res.redirect("/api/accounts");
+      })
+      .catch((err) => {
+        res.status(505).json({ error: err.message });
+      });
+  });
+
   // GET edit_password
   router.get("/accounts/:accountId", (req, res) => {
     const accountId = req.params.accountId;

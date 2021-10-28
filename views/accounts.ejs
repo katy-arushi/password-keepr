@@ -46,11 +46,14 @@
                 <a href="/api/accounts/<%= account.id %>"><i class="fas fa-edit"></i></a>
                 <% } %>
               </div>
+              <% for(let account of accounts) { %>
+              <form action="/api/accounts/<%= account.id %>/delete" method="POST">
               <div class="delete-button">
-                <% for(let account of accounts) { %>
-                  <a href="/api/accounts/<%= account.id %>/delete"><i class="fas fa-trash-alt"></i></a>
+
+                  <button type="submit"><i class="fas fa-trash-alt"></i></button>
                   <% } %>
               </div>
+            </form>
             </div>
           </div>
 

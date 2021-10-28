@@ -9,6 +9,7 @@ const express = require("express");
 const router = express.Router();
 
 module.exports = (db) => {
+
   // GET accounts
   router.get("/accounts", (req, res) => {
     userId = req.session.userId;
@@ -31,6 +32,8 @@ module.exports = (db) => {
         res.status(500).json({ error: err.message });
       });
   });
+
+  
   // GET new_account
   router.get("/accounts/new_account", (req, res) => {
     db.query(`SELECT * FROM categories`)

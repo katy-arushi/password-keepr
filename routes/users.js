@@ -52,17 +52,17 @@ module.exports = (db) => {
       return res.status(403).send("Email or password cannot be empty");
     }
 
-    db.query(`SELECT * FROM users WHERE email=$1`, [email])
+    db.query(`SELECT * FROM users WHERE email=$1`, [email]) // find the email in the db
       .then((data) => {
-        user = data.rows[0];
-        if (!user) {
+        user = data.rows[0]; // get the user, which is the first row of the results
+        if (!user) { // check that a user exists
           res.send("Email login does not exist!");
         }
-        if (password !== user.password) {
+        if (password !== user.password) { // check password
           res.send("Incorrect Password!");
         }
-        req.session.userId = user.id;
-        req.session.orgName = user.org_id;
+        req.session.userId = user.id; // set cookies
+        req.session.orgName = user.org_id; // set cookies
         res.redirect("/api/accounts");
       })
       .catch((err) => {
@@ -72,8 +72,8 @@ module.exports = (db) => {
 
   // GET organizations
 
-  router.get("/organizations", (req, res) => {
-    db.query(`SELECT * FROM organizations`)
+  router.get("/organizations", (req, res) => { // HEADER
+    db.query(`SELECT * FROM organizations`) // show all organizations
       .then((data) => {
         const organizations = data.rows;
         res.render("organizations", { organizations });

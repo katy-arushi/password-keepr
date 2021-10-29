@@ -44,6 +44,7 @@ module.exports = (db) => {
 
   // GET new account
   router.get("/accounts/new_account", (req, res) => {  // renders HEADER partial
+    userId = req.session.userId; // userID from cookies
     const templateVars = {};
 
     db.query( // Query for displaying user's name in header
@@ -69,6 +70,7 @@ module.exports = (db) => {
 
   // GET generate password
   router.get("/accounts/generate_password", (req, res) => {  // renders HEADER partial
+    userId = req.session.userId; // userID from cookies
     db.query( // Query for displaying user's name in header
       `SELECT users.first_name AS name FROM users WHERE users.id = $1`,
       [userId]
@@ -83,6 +85,7 @@ module.exports = (db) => {
 
   // GET edit_password
   router.get("/accounts/:accountId", (req, res) => { // renders HEADER partial
+    userId = req.session.userId; // userID from cookies
     const accountId = req.params.accountId; // get accountID from the URL
 
     const templateVars = {};

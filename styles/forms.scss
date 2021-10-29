@@ -208,3 +208,10 @@ $text-font: 'Hind Guntur', sans-serif;
   border: $secondary-color solid 7px;
   border-radius: 25px;
 }
+
+// styles for accounts page
+.deleteButton {
+  cursor: pointer;
+  background-color: transparent;
+  color: #E3EEF2;
+}

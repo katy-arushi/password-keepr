@@ -9,7 +9,9 @@
 
 <body class="background">
   <%- include('partials/_header') %>
-  <div class="container form">
+
+  <div class="container">
+    <div class="form">
 
       <p class="main-action-tagline"> Add a new account</p>
 
@@ -33,36 +35,28 @@
           <div class="col-12">
             <input type="email" name="email" class="form-control" placeholder="Email" aria-label="email">
           </div>
-          <div class="col-md-8">
+          <div class="col-md-5">
             <input type="text" name="manual_password" class="form-control" placeholder="Enter a password" aria-label="Enter a password">
           </div>
 
-          <div class="col-md-4">
-            <span id="copyButton" class="input-group-addon btn" title="Click to copy">
-            <i class="fas fa-copy" aria-hidden="true"></i>
+          <div>
+            <div class="col-md-5">
+              <span id="copyButton" class="input-group-addon btn" title="Click to copy">
+              <i class="fas fa-copy" aria-hidden="true"></i>
+            </div>
           </div>
-          <div class="col-md-12">
+
           <p id="or">OR</p>
-        </div>
 
           <!-- Button trigger modal -->
-          <div class="col-md-12">
+          <div class="col-md-5">
             <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#generatePasswordModal">Generate Password</button>
-
           </div>
 
-          <!-- <div class="col-12" id="new-pass">
-            <div class="input-group">
-              <input type="text" name="generated_password" class="form-control" placeholder="Your new password is: "  arial-label="generated password">
-              <span id="copyButton" class="input-group-addon btn" title="Click to copy">
-              </span>
-            </div>
-          </div> -->
-
-          <button type="submit" class="btn btn-primary">Add Account</button>
-
+          <button type="submit" id="new-pass" class="btn btn-primary">Add Account</button>
        </form>
   </div>
+</div>
 
 
   <!-- Modal -->
@@ -70,7 +64,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <div class="form">
+          <div class="new-form">
             <p class="main-action-tagline"> Generate random password</p>
 
               <form id="password_gen" class="row g-3">
@@ -103,7 +97,7 @@
 
               <div class="text-center">
                 <button type="submit" class="btn btn-primary" >Generate Password</button>
-                </div>
+              </div>
               </form>
           </div>
         </div>

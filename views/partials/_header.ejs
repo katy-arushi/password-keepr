@@ -23,34 +23,13 @@
         <li class="nav-item active">
           <a class="nav-link" href="/api/accounts">Passwords</a>
         </li>
-        <!-- <li class="nav-item active">
-          <a class="nav-link" href="/organizations">Organizations</a>
-        </li> -->
         <li class="nav-item active">
-          <a class="nav-link" href="/api/accounts/new_account"
-            >Add New Account</a
-          >
-          <!-- </li>
-        <li class="nav-item active">
-          <a class="nav-link" href="/api/accounts/generate_password"
-            >Generate Random Password</a
-          >
-        </li> -->
-
-          <!-- /generate_password -->
+          <a class="nav-link" href="/api/accounts/new_account">Add New Account</a>
         </li>
 
         <li class="nav-item dropdown">
-          <a
-            class="nav-link dropdown-toggle"
-            href="#"
-            id="navbarDropdown"
-            role="button"
-            data-toggle="dropdown"
-            aria-haspopup="true"
-            aria-expanded="false"
-          >
-            Hello User
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Hello <%= userName[0].name %>
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <!-- <form action="/logout" method="POST"> -->
@@ -60,6 +39,7 @@
             <!-- </form> -->
           </div>
         </li>
+
       </ul>
       <form class="form-inline my-2 my-lg-0">
         <input

@@ -1,17 +1,15 @@
-/*
- * All routes for accounts are defined here
- * Since this file is loaded in server.js into api/accounts,
- *   these routes are mounted onto /accounts
- * See: https://expressjs.com/en/guide/using-middleware.html#middleware.router
- */
+/* All routes for accounts are defined here
+ * Since this file is loaded in server.js into api/accounts, these routes are mounted onto /accounts
+ * See: https://expressjs.com/en/guide/using-middleware.html#middleware.router */
 
 const express = require("express");
 const router = express.Router();
 
 module.exports = (db) => {
+  // -------------------------------------- GET ROUTE HANDLERS -------------------------------------- //
 
   // GET accounts
-  router.get("/accounts", (req, res) => {  // HEADER
+  router.get("/accounts", (req, res) => {  // renders HEADER partial
     userId = req.session.userId; // userID from cookies
 
     const templateVars = {};
@@ -22,7 +20,7 @@ module.exports = (db) => {
       )
       .then((data) => {
         const userName = data.rows;
-        templateVars.userName = userName;
+        templateVars.userName = userName; // add to template vars
       })
 
     db.query(
@@ -35,8 +33,7 @@ module.exports = (db) => {
     )
       .then((data) => {
         const accounts = data.rows;
-        templateVars.accounts = accounts;
-        console.log(templateVars)
+        templateVars.accounts = accounts; // add to template vars
         res.render("accounts", templateVars);
       })
       .catch((err) => {
@@ -45,21 +42,76 @@ module.exports = (db) => {
   });
 
 
-  // GET new_account
-  router.get("/accounts/new_account", (req, res) => {   // HEADER
+  // GET new account
+  router.get("/accounts/new_account", (req, res) => {  // renders HEADER partial
+    const templateVars = {};
+
+    db.query( // Query for displaying user's name in header
+      `SELECT users.first_name AS name FROM users WHERE users.id = $1`,
+      [userId]
+      )
+      .then((data) => {
+        const userName = data.rows;
+        templateVars.userName = userName; // add to template vars
+      })
+
     db.query(`SELECT * FROM categories`)
       .then((data) => {
         const categories = data.rows;
-        res.render("new_account", { categories });
+        templateVars.categories = categories; // add to template vars
+        res.render("new_account", templateVars);
       })
       .catch((err) => {
         res.status(500).json({ error: err.message });
       });
   });
 
+
+  // GET generate password
+  router.get("/accounts/generate_password", (req, res) => {  // renders HEADER partial
+    db.query( // Query for displaying user's name in header
+      `SELECT users.first_name AS name FROM users WHERE users.id = $1`,
+      [userId]
+      )
+      .then((data) => {
+        const userName = data.rows;
+        const templateVars = {userName}; // make template vars obj
+        res.render("generate_password", templateVars);
+      })
+  });
+
+
+  // GET edit_password
+  router.get("/accounts/:accountId", (req, res) => { // renders HEADER partial
+    const accountId = req.params.accountId; // get accountID from the URL
+
+    const templateVars = {};
+
+    db.query( // Query for displaying user's name in header
+      `SELECT users.first_name AS name FROM users WHERE users.id = $1`,
+      [userId]
+      )
+      .then((data) => {
+        const userName = data.rows;
+        templateVars.userName = userName; // add to template vars
+      })
+
+    db.query(`SELECT * FROM accounts WHERE id = $1`, [accountId])
+      .then((data) => {
+        const editedPassword = data.rows[0];
+        templateVars.editedPassword = editedPassword // add to template vars
+        res.render("edit_password", templateVars);
+      })
+      .catch((err) => {
+        res.status(500).json({ error: err.message });
+      });
+  });
+
+  // ------------------------------------ POST ROUTE HANDLERS --------------------------------------- //
+
+  // POST new account
   router.post("/accounts/new_account", (req, res) => {
     const userOrg = req.session.orgName;
-    console.log("test", req.body);
     if (
       !req.body.website_name ||
       !req.body.website_url ||
@@ -88,15 +140,13 @@ module.exports = (db) => {
       });
   });
 
-  router.get("/accounts/generate_password", (req, res) => {  // HEADER
-    const templateVars = {};
-    res.render("generate_password", templateVars);
-  });
 
+  // POST generate password
   router.post("/accounts/generate_password", (req, res) => {
     res.redirect("/api/accounts/generate_password");
   });
 
+  // POST delete an account
   router.post("/accounts/:accountId/delete", (req, res) => {
     const accountId = req.params.accountId;
     const userOrg = req.session.orgName;
@@ -113,19 +163,8 @@ module.exports = (db) => {
       });
   });
 
-  // GET edit_password
-  router.get("/accounts/:accountId", (req, res) => { // HEADER
-    const accountId = req.params.accountId;
-    db.query(`SELECT * FROM accounts WHERE id = $1`, [accountId])
-      .then((data) => {
-        const templateVars = data.rows[0];
-        res.render("edit_password", { templateVars });
-      })
-      .catch((err) => {
-        res.status(500).json({ error: err.message });
-      });
-  });
 
+  // POST edit account
   router.post("/accounts/:accountId", (req, res) => {
     const accountId = req.params.accountId;
     const userOrg = req.session.orgName;

@@ -35,19 +35,21 @@
           </div>
           <div class="col-md-5">
             <input type="text" name="manual_password" class="form-control" placeholder="Enter a password" aria-label="Enter a password">
+            <span id="copyButton" class="input-group-addon btn" title="Click to copy">
+              <i class="fas fa-copy" aria-hidden="true"></i>
           </div>
           <p id="or">OR</p>
 
           <!-- Button trigger modal -->
           <div class="col-md-5">
             <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#generatePasswordModal">Generate Password</button>
+
           </div>
 
           <div class="col-12" id="new-pass">
             <div class="input-group">
               <input type="text" name="generated_password" class="form-control" placeholder="Your new password is: "  arial-label="generated password">
               <span id="copyButton" class="input-group-addon btn" title="Click to copy">
-                <i class="fas fa-copy" aria-hidden="true"></i>
               </span>
             </div>
           </div>
@@ -67,7 +69,6 @@
             <p class="main-action-tagline"> Generate random password</p>
 
               <form id="password_gen" class="row g-3">
-              <!-- <form id="password_gen" class="row g-3" action="/api/accounts/new_account" method="GET"> -->
               <div class="col-12" id="new-pass">
               <div class="wrapper">
                 <label for="passwordLength" class="title">Password Length:</label>

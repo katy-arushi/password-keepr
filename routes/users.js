@@ -32,17 +32,18 @@ module.exports = (db) => {
       .then((data) => {
         const userName = data.rows;
         templateVars.userName = userName; // add to template vars
+        
+        db.query(`SELECT * FROM organizations`) // show all organizations
+          .then((data) => {
+            const organizations = data.rows;
+            templateVars.organizations = organizations;
+            res.render("organizations", templateVars);
+          })
+          .catch((err) => {
+            res.status(500).json({ error: err.message });
+          });
       })
 
-    db.query(`SELECT * FROM organizations`) // show all organizations
-      .then((data) => {
-        const organizations = data.rows;
-        templateVars.organizations = organizations;
-        res.render("organizations", templateVars);
-      })
-      .catch((err) => {
-        res.status(500).json({ error: err.message });
-      });
   });
 
   // ------------------------------------ POST ROUTE HANDLERS --------------------------------------- //

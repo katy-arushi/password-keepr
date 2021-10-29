@@ -21,25 +21,26 @@ module.exports = (db) => {
       .then((data) => {
         const userName = data.rows;
         templateVars.userName = userName; // add to template vars
+
+        db.query(
+          `SELECT accounts.*, categories.website_category AS category FROM accounts
+        JOIN categories ON categories.id = accounts.category_id
+        JOIN organizations ON organizations.id = accounts.org_id
+        JOIN users ON users.org_id = organizations.id
+        WHERE users.id = $1`,
+          [userId]
+        )
+          .then((data) => {
+            const accounts = data.rows;
+            templateVars.accounts = accounts; // add to template vars
+            console.log(templateVars);
+            res.render("accounts", templateVars);
+          })
+          .catch((err) => {
+            res.status(500).json({ error: err.message });
+          });
       })
 
-    db.query(
-      `SELECT accounts.*, categories.website_category AS category FROM accounts
-    JOIN categories ON categories.id = accounts.category_id
-    JOIN organizations ON organizations.id = accounts.org_id
-    JOIN users ON users.org_id = organizations.id
-    WHERE users.id = $1`,
-      [userId]
-    )
-      .then((data) => {
-        const accounts = data.rows;
-        templateVars.accounts = accounts; // add to template vars
-        console.log(templateVars);
-        res.render("accounts", templateVars);
-      })
-      .catch((err) => {
-        res.status(500).json({ error: err.message });
-      });
   });
 
 
@@ -55,17 +56,17 @@ module.exports = (db) => {
       .then((data) => {
         const userName = data.rows;
         templateVars.userName = userName; // add to template vars
-      })
 
-    db.query(`SELECT * FROM categories`)
-      .then((data) => {
-        const categories = data.rows;
-        templateVars.categories = categories; // add to template vars
-        res.render("new_account", templateVars);
+        db.query(`SELECT * FROM categories`)
+          .then((data) => {
+            const categories = data.rows;
+            templateVars.categories = categories; // add to template vars
+            res.render("new_account", templateVars);
+          })
+          .catch((err) => {
+            res.status(500).json({ error: err.message });
+          });
       })
-      .catch((err) => {
-        res.status(500).json({ error: err.message });
-      });
   });
 
 
@@ -98,6 +99,7 @@ module.exports = (db) => {
       .then((data) => {
         const userName = data.rows;
         templateVars.userName = userName; // add to template vars
+        
         db.query(`SELECT * FROM accounts WHERE id = $1`, [accountId])
           .then((data) => {
             const editedPassword = data.rows[0];

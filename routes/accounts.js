@@ -71,7 +71,7 @@ module.exports = (db) => {
 
   // GET generate password
   router.get("/accounts/generate_password", (req, res) => {  // renders HEADER partial
-    userId = req.session.userId;
+    const userId = req.session.userId;
     db.query( // Query for displaying user's name in header
       `SELECT users.first_name AS name FROM users WHERE users.id = $1`,
       [userId]
@@ -87,7 +87,6 @@ module.exports = (db) => {
 
   // GET edit_password
   router.get("/accounts/:accountId", (req, res) => { // renders HEADER partial
-    userId = req.session.userId; // userID from cookies
     const accountId = req.params.accountId; // get accountID from the URL
     const userId = req.session.userId; // userID from cookies
     const templateVars = {id: userId};
@@ -99,18 +98,18 @@ module.exports = (db) => {
       .then((data) => {
         const userName = data.rows;
         templateVars.userName = userName; // add to template vars
+        db.query(`SELECT * FROM accounts WHERE id = $1`, [accountId])
+          .then((data) => {
+            const editedPassword = data.rows[0];
+            templateVars.editedPassword = editedPassword; // add to template vars
+            console.log(templateVars);
+            res.render("edit_password", templateVars);
+          })
+          .catch((err) => {
+            res.status(500).json({ error: err.message });
+          });
       })
 
-    db.query(`SELECT * FROM accounts WHERE id = $1`, [accountId])
-      .then((data) => {
-        const editedPassword = data.rows[0];
-        templateVars.editedPassword = editedPassword; // add to template vars
-        console.log(templateVars);
-        res.render("edit_password", templateVars);
-      })
-      .catch((err) => {
-        res.status(500).json({ error: err.message });
-      });
   });
 
   // ------------------------------------ POST ROUTE HANDLERS --------------------------------------- //
@@ -172,10 +171,12 @@ module.exports = (db) => {
 
   // POST edit password
   router.post("/accounts/:accountId", (req, res) => {
+    console.log("HERE", req.body);
     const accountId = req.params.accountId;
     const userOrg = req.session.orgName;
     const newPassword = req.body.manual_password;
-    console.log(newPassword);
+    console.log(userOrg);
+    console.log(accountId);
 
     db.query(
       `UPDATE accounts SET password = $1 WHERE id = $2 AND org_id = $3`,

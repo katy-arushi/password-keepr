@@ -8,6 +8,10 @@ $(document).ready(function () {
   }
 
   $("#copyButton").click(function () {
-    copyToClipboard($('input[name="manual_password"').val());
+    copyToClipboard($('input[name="manual_password"]').val());
+  });
+
+  $("#copyButtonAcc").click(function () {
+    copyToClipboard($(".password").text().trim());
   });
 });

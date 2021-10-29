@@ -21,7 +21,7 @@ $(document).ready(function () {
     let number = $(this).find("#numbersBox").is(":checked");
     let symbol = $(this).find("#symbolsBox").is(":checked");
     console.log(passwordLength, upper, lower, number, symbol);
-    $('input[name="manual_password"').empty;
+    $('input[name="manual_password"]').empty;
     let charCodeArr = [];
     if (upper) {
       charCodeArr.push(upperCase);
@@ -45,7 +45,7 @@ $(document).ready(function () {
       );
     }
     console.log(password.join);
-    $('input[name="manual_password"').val(password.join(""));
+    $('input[name="manual_password"]').val(password.join(""));
     $("#generatePasswordModal").modal("hide");
   });
 });

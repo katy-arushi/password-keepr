@@ -3,12 +3,19 @@
     <a class="navbar-brand" href="/">
       <p class="logo-header">passwordb</p>
     </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
           <a class="nav-link" href="/">Home</a>
@@ -20,33 +27,55 @@
           <a class="nav-link" href="/organizations">Organizations</a>
         </li> -->
         <li class="nav-item active">
-          <a class="nav-link" href="/api/accounts/new_account">Add New Account</a>
-        </li>
+          <a class="nav-link" href="/api/accounts/new_account"
+            >Add New Account</a
+          >
+          <!-- </li>
         <li class="nav-item active">
-          <a class="nav-link" href="/api/accounts/generate_password">Generate Random Password</a>
+          <a class="nav-link" href="/api/accounts/generate_password"
+            >Generate Random Password</a
+          >
+        </li> -->
+
+          <!-- /generate_password -->
         </li>
-
-
-        <!-- /generate_password -->
 
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="navbarDropdown"
+            role="button"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
             Hello User
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <form action="/logout" method="POST">
+            <!-- <form action="/logout" method="POST"> -->
             <a class="dropdown-item" id="my-account">My Account</a>
             <div class="dropdown-divider"></div>
-            <button type="submit" class="dropdown-item" >Logout</button>
-          </form>
+            <button type="submit" class="dropdown-item">Logout</button>
+            <!-- </form> -->
           </div>
         </li>
       </ul>
       <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search passwords" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" id="search-btn" type="submit">Search</button>
+        <input
+          class="form-control mr-sm-2"
+          type="search"
+          placeholder="Search passwords"
+          aria-label="Search"
+        />
+        <button
+          class="btn btn-outline-success my-2 my-sm-0"
+          id="search-btn"
+          type="submit"
+        >
+          Search
+        </button>
       </form>
     </div>
   </nav>
-
 </header>

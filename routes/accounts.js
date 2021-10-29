@@ -75,13 +75,13 @@ module.exports = (db) => {
       });
   });
 
-  router.get("/accounts/generate_password", (req, res) => {
-    res.render("generate_password");
-  });
+  // router.get("/accounts/generate_password", (req, res) => {
+  //   res.render("generate_password");
+  // });
 
-  router.post("/accounts/generate_password", (req, res) => {
-    res.redirect("/api/accounts/generate_password");
-  });
+  // router.post("/accounts/generate_password", (req, res) => {
+  //   res.redirect("/api/accounts/generate_password");
+  // });
 
   router.post("/accounts/:accountId/delete", (req, res) => {
     const accountId = req.params.accountId;

@@ -10,7 +10,7 @@ module.exports = (db) => {
 
   // GET accounts
   router.get("/accounts", (req, res) => {  // renders HEADER partial
-    userId = req.session.userId; // userID from cookies
+    const userId = req.session.userId; // userID from cookies
 
     const templateVars = {};
 
@@ -34,6 +34,7 @@ module.exports = (db) => {
       .then((data) => {
         const accounts = data.rows;
         templateVars.accounts = accounts; // add to template vars
+        console.log(templateVars);
         res.render("accounts", templateVars);
       })
       .catch((err) => {
@@ -44,7 +45,7 @@ module.exports = (db) => {
 
   // GET new account
   router.get("/accounts/new_account", (req, res) => {  // renders HEADER partial
-    userId = req.session.userId; // userID from cookies
+    const userId = req.session.userId; // userID from cookies
     const templateVars = {};
 
     db.query( // Query for displaying user's name in header
@@ -70,14 +71,15 @@ module.exports = (db) => {
 
   // GET generate password
   router.get("/accounts/generate_password", (req, res) => {  // renders HEADER partial
-    userId = req.session.userId; // userID from cookies
+    userId = req.session.userId;
     db.query( // Query for displaying user's name in header
       `SELECT users.first_name AS name FROM users WHERE users.id = $1`,
       [userId]
       )
       .then((data) => {
         const userName = data.rows;
-        const templateVars = {userName}; // make template vars obj
+        const templateVars = { userName }; // make template vars obj
+        console.log(templateVars);
         res.render("generate_password", templateVars);
       })
   });
@@ -87,8 +89,8 @@ module.exports = (db) => {
   router.get("/accounts/:accountId", (req, res) => { // renders HEADER partial
     userId = req.session.userId; // userID from cookies
     const accountId = req.params.accountId; // get accountID from the URL
-
-    const templateVars = {};
+    const userId = req.session.userId; // userID from cookies
+    const templateVars = {id: userId};
 
     db.query( // Query for displaying user's name in header
       `SELECT users.first_name AS name FROM users WHERE users.id = $1`,
@@ -102,7 +104,8 @@ module.exports = (db) => {
     db.query(`SELECT * FROM accounts WHERE id = $1`, [accountId])
       .then((data) => {
         const editedPassword = data.rows[0];
-        templateVars.editedPassword = editedPassword // add to template vars
+        templateVars.editedPassword = editedPassword; // add to template vars
+        console.log(templateVars);
         res.render("edit_password", templateVars);
       })
       .catch((err) => {
@@ -167,7 +170,7 @@ module.exports = (db) => {
   });
 
 
-  // POST edit account
+  // POST edit password
   router.post("/accounts/:accountId", (req, res) => {
     const accountId = req.params.accountId;
     const userOrg = req.session.orgName;
@@ -179,6 +182,7 @@ module.exports = (db) => {
       [newPassword, accountId, userOrg]
     )
       .then((data) => {
+        const templateVars = {id: accountId}
         res.redirect("/api/accounts");
       })
       .catch((err) => {

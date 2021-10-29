@@ -183,13 +183,13 @@ $text-font: 'Hind Guntur', sans-serif;
   border-radius: 8px;
 }
 
-// #copyButton {
-//   cursor: pointer;
-//     &:hover {
-//     background-color: $secondary-color;
-//     border-color: $secondary-color;
-//   }
-// }
+#copyButton {
+  cursor: pointer;
+    &:hover {
+    background-color: $secondary-color;
+    border-color: $secondary-color;
+  }
+}
 
 .input-group-addon {
   margin-left: -30px;
@@ -199,12 +199,12 @@ $text-font: 'Hind Guntur', sans-serif;
   display:inline-block;
 }
 
-// .new-form {
-//   width: 60vh;
-//   padding: 3em;
-// }
+.new-form {
+  width: 60vh;
+  padding: 3em;
+}
 
-// .modal-content {
-//   border: $secondary-color solid 7px;
-//   border-radius: 25px;
-// }
+.modal-content {
+  border: $secondary-color solid 7px;
+  border-radius: 25px;
+}

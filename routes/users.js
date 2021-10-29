@@ -22,7 +22,7 @@ module.exports = (db) => {
 
   // GET organizations
   router.get("/organizations", (req, res) => { // renders HEADER partial
-
+    userId = req.session.userId; // userID from cookies
     const templateVars = {};
 
     db.query( // Query for displaying user's name in header

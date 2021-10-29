@@ -1,20 +1,51 @@
-/*
- * All routes for Users are defined here
- * Since this file is loaded in server.js into api/users,
- *   these routes are mounted onto /users
- * See: https://expressjs.com/en/guide/using-middleware.html#middleware.router
- */
+/* All routes for Users are defined here
+ * Since this file is loaded in server.js into api/users, these routes are mounted onto /users
+ * See: https://expressjs.com/en/guide/using-middleware.html#middleware.router */
 
 const express = require("express");
 const router = express.Router();
 
 module.exports = (db) => {
+  // -------------------------------------- GET ROUTE HANDLERS -------------------------------------- //
 
   // GET register
   router.get("/register", (req, res) => {
     res.render("register");
   });
 
+
+  // GET login
+  router.get("/login", (req, res) => {
+    res.render("login");
+  });
+
+
+  // GET organizations
+  router.get("/organizations", (req, res) => { // renders HEADER partial
+
+    const templateVars = {};
+
+    db.query( // Query for displaying user's name in header
+      `SELECT users.first_name AS name FROM users WHERE users.id = $1`,
+      [userId]
+      )
+      .then((data) => {
+        const userName = data.rows;
+        templateVars.userName = userName; // add to template vars
+      })
+
+    db.query(`SELECT * FROM organizations`) // show all organizations
+      .then((data) => {
+        const organizations = data.rows;
+        templateVars.organizations = organizations;
+        res.render("organizations", templateVars);
+      })
+      .catch((err) => {
+        res.status(500).json({ error: err.message });
+      });
+  });
+
+  // ------------------------------------ POST ROUTE HANDLERS --------------------------------------- //
 
   // POST register
   router.post("/register", (req, res) => {
@@ -39,10 +70,6 @@ module.exports = (db) => {
       });
   });
 
-  // GET login
-  router.get("/login", (req, res) => {
-    res.render("login");
-  });
 
   // POST login
   router.post("/login", (req, res) => {
@@ -70,19 +97,8 @@ module.exports = (db) => {
       });
   });
 
-  // GET organizations
 
-  router.get("/organizations", (req, res) => { // HEADER
-    db.query(`SELECT * FROM organizations`) // show all organizations
-      .then((data) => {
-        const organizations = data.rows;
-        res.render("organizations", { organizations });
-      })
-      .catch((err) => {
-        res.status(500).json({ error: err.message });
-      });
-  });
-
+  // POST organizations
   router.post("/organizations", (req, res) => {
     const userId = req.session.userId;
     const orgName = req.body.org_name;
@@ -100,6 +116,8 @@ module.exports = (db) => {
       });
   });
 
+
+  // POST logout
   router.post("/logout", (req, res) => {
     req.session = null;
     res.redirect("/");

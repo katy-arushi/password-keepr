@@ -185,6 +185,10 @@ $text-font: 'Hind Guntur', sans-serif;
 
 #copyButton {
   cursor: pointer;
+    &:hover {
+    background-color: $secondary-color;
+    border-color: $secondary-color;
+  }
 }
 
 .input-group-addon {
@@ -194,4 +198,3 @@ $text-font: 'Hind Guntur', sans-serif;
 .col-md-4 {
   display:inline-block;
 }
-

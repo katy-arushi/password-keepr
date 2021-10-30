@@ -45,10 +45,6 @@ A [Lighthouse Labs](https://www.lighthouselabs.ca/) project by [Arushi Katyal](h
 7. Run the server: `npm run local`
      - Note: nodemon is used, so you should not have to restart your server
 8. Visit `http://localhost:8080/`
-
-## Warnings & Tips
-
-- Split database schema (table definitions) and seeds (inserts) into separate files, one per table. See `db` folder for pre-populated examples. 
   
 ## Dependencies
 

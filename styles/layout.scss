@@ -32,6 +32,9 @@ html {
   border-color: $secondary-color;
   color: white;
   font-weight: bold;
+  padding: 5px!important;
+  padding-left: 15px!important;
+  padding-right: 15px!important;
   &:hover {
     background-color: $text-color!important;
     border-width: 3px;

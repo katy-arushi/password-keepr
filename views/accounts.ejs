@@ -60,18 +60,20 @@
                   <div class="delete-button">
                     <button type="submit"><i class="fas fa-trash-alt"></i></button>
                   </div> -->
-
+                  <div class="delete-button">
                   <form action="/api/accounts/<%= account.id %>/delete" method="POST">
-                    <div class="delete-button">
+
                       <span id="deleteButton" class="input-group-addon btn" title="Click to delete">
                       <!-- <i class="fas fa-trash-alt"></i> -->
-                      <button type="submit" class="input-group-addon btn"><i class="fas fa-trash-alt"></i></button>
-                    </div>
+                      <button class="btn"><i class="fas fa-trash-alt"></i></button>
+
                   </form>
                 </div>
+                </div>
               </div>
-            </tbody>
-          </table>
+            </div>
+        </tbody>
+      </table>
     <% } %>
 
   <!-- Bootstrap JS -->

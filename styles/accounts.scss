@@ -69,10 +69,17 @@ $text-font: 'Hind Guntur', sans-serif;
   flex-wrap: wrap;
   align-content: center;
   justify-content: space-between;
-  margin: 20px;
+  margin: 15px;
 }
 
 .fa-people-arrows, .fa-briefcase, .fa-theater-masks, .fa-walking {
   padding-left: 35px;
   padding-top: 20px;
+}
+
+
+.btn {
+  padding: 0;
+  border: transparent;
+  cursor: pointer;
 }

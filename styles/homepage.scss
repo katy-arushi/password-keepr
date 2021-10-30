@@ -77,3 +77,24 @@ $text-font: 'Hind Guntur', sans-serif;
   justify-content: space-between;
   width: 50%;
 }
+
+/* Add responsive design for mobile phones */
+@media only screen and (min-width:300px) and (max-width: 767px) {
+  .logo {
+    font-size: 100px;
+  }
+  .buttons {
+    width: 40vh;
+  }
+}
+
+/* Add responsive design for tablets */
+@media only screen and (min-width: 768px) and (max-width:1023px) {
+  .logo {
+    font-size: 100px;
+  }
+  .buttons {
+    width: 40vh;
+  }
+}
+

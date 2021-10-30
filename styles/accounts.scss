@@ -72,6 +72,32 @@ $text-font: 'Hind Guntur', sans-serif;
   margin: 15px;
 }
 
+.copy-button {
+  cursor: pointer;
+    &:hover {
+    background-color: $secondary-color;
+    border-color: $secondary-color;
+  }
+}
+
+.edit-button {
+  cursor: pointer;
+    &:hover {
+    background-color: $secondary-color;
+    border-color: $secondary-color;
+  }
+}
+
+
+.delete-button {
+  cursor: pointer;
+    &:hover {
+    background-color: $secondary-color;
+    border-color: $secondary-color;
+  }
+}
+
+
 .fa-people-arrows, .fa-briefcase, .fa-theater-masks, .fa-walking {
   padding-left: 35px;
   padding-top: 20px;
@@ -80,6 +106,5 @@ $text-font: 'Hind Guntur', sans-serif;
 
 .btn {
   padding: 0;
-  border: transparent;
   cursor: pointer;
 }

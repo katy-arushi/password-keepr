@@ -209,3 +209,13 @@ $text-font: 'Hind Guntur', sans-serif;
   border-radius: 25px;
 }
 
+/* Add responsive design for mobile phones */
+@media only screen and (min-width: 300px) and (max-width: 767px) {
+  .form {
+    width: 100%;
+  }
+
+  .container {
+   margin-top: 100px;
+  }
+}

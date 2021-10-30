@@ -10,10 +10,18 @@ A [Lighthouse Labs](https://www.lighthouselabs.ca/) project by [Arushi Katyal](h
 ## Features
 - Generates passwords based on user's specifications
 - Allows users to join organizations to see all an organization's passwords.
-- Allows an organization to invite users to view their **passwordb** vault.
-
-### Known Issues
-- Responsive design not fully implemented.
+- Allows an organization to add users to view their **passwordb** secure accounts.
+  
+### Stretch Features
+- Delete account functionality.
+- Login, register, logout.
+- Data validation for login and register.
+  
+### Future Features
+- Fully implement responsive design for mobile and tablet.
+- Use bcrypt for password hashing/encryption.
+- Add 'My Account' page to allow a user to change their **passwordb** email and password.
+- Implement search bar function to allow a user to search their passwords.
 
 ## Screenshots
 

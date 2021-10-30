@@ -24,6 +24,12 @@ A [Lighthouse Labs](https://www.lighthouselabs.ca/) project by [Arushi Katyal](h
 - Implement search bar function to allow a user to search their passwords.
 
 ## Screenshots
+!["passwordb homepage"](https://github.com/katy-arushi/password-keepr/blob/master/docs/home.png?raw=true)
+!["passwordb login"](https://github.com/katy-arushi/password-keepr/blob/master/docs/login.png?raw=true)
+!["passwordb register"](https://github.com/katy-arushi/password-keepr/blob/master/docs/register.png?raw=true)
+!["passwordb accounts](https://github.com/katy-arushi/password-keepr/blob/master/docs/accounts.png?raw=true)
+!["passwordb add account](https://github.com/katy-arushi/password-keepr/blob/master/docs/add_account.png?raw=true)
+!["passwordb edit password](https://github.com/katy-arushi/password-keepr/blob/master/docs/edit_pass.png?raw=true)
 
 ## Getting Started
 
@@ -49,6 +55,3 @@ A [Lighthouse Labs](https://www.lighthouselabs.ca/) project by [Arushi Katyal](h
 - Node 10.x or above
 - NPM 5.x or above
 - PG 6.x
-
-
-

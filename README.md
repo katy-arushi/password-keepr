@@ -12,7 +12,7 @@ A [Lighthouse Labs](https://www.lighthouselabs.ca/) project by [Arushi Katyal](h
 - Allows users to join organizations to see all an organization's passwords.
 - Allows an organization to add users to view their **passwordb** secure accounts.
   
-### Stretch Features
+### Stretch Features Included
 - Delete account functionality.
 - Login, register, logout.
 - Data validation for login and register.

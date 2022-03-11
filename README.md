@@ -8,14 +8,10 @@ A [Lighthouse Labs](https://www.lighthouselabs.ca/) project by [Arushi Katyal](h
 ---
 
 ## Features
-- Generates passwords based on user's specifications
-- Allows users to join organizations to see all an organization's passwords.
-- Allows an organization to add users to view their **passwordb** secure accounts.
-  
-### Stretch Features Included
-- Delete account functionality.
-- Login, register, logout.
-- Data validation for login and register.
+- ⭐️ Generates passwords based on user's specifications (uppercase, lowercase, numbers, symbols, length)
+- ⭐️ Complete login, register, logout and delete account functionality with data validation
+- ⭐️ Allows users to join organizations to see all an organization's passwords.
+- ⭐️ Allows an organization to add users to view their **passwordb** secure accounts.
   
 ### Future Features
 - Fully implement responsive design for mobile and tablet.
@@ -41,7 +37,7 @@ A [Lighthouse Labs](https://www.lighthouselabs.ca/) project by [Arushi Katyal](h
 3. Install dependencies: `npm i`
 4. Fix to binaries for sass: `npm rebuild node-sass`
 5. Reset database: `npm run db:reset`
-     - Check the db folder to see what gets created and seeded in the SDB
+     - Check the db folder to see what gets created and seeded in the DB
 7. Run the server: `npm run local`
      - Note: nodemon is used, so you should not have to restart your server
 8. Visit `http://localhost:8080/`
